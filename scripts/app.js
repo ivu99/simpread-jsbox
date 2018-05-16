@@ -15,10 +15,10 @@ if (pr.state == "none") {
  */
 function userAgent() {
     var ua = navigator.userAgent.toLowerCase();
-    if (ua.match(/ipad/i) == "ipad") {
-        return "ipad";
-    } else {
+    if (ua.match(/iphone/i) == "iphone") {
         return "iphone";
+    } else {
+        return "ipad";
     }
 }
 
@@ -53,32 +53,6 @@ function controlbar() {
         }
         cur = next;
     });
-
-    $( "sr-rd-crlbar fab.pocket" ).click( function () {
-        var notify = new Notify().Render({ state: "loading", content: "保存中，请稍后！" });
-        $.ajax({
-            url     : `http://192.168.199.130:3000/service/add`,
-            type    : "POST",
-            data    : {
-                id    : "simpread",
-                name  : "pocket",
-                token : simpread_config.secret.pocket.access_token,
-                tags  : simpread_config.secret.pocket.tags,
-                title : pr.html.title,
-                url   : pr.org_url,
-            }
-        }).done(function (result, textStatus, jqXHR) {
-            console.log(result, textStatus, jqXHR);
-            notify.complete();
-            if (result.code == 200) {
-                new Notify().Render("保存成功！");
-            } else new Notify().Render("保存失败，请稍候再试！");
-        }).fail(function (jqXHR, textStatus, error) {
-            console.error(jqXHR, textStatus, error);
-            new Notify().Render("保存失败，请稍候再试！");
-        });
-    });
-
 }
 
 /**
@@ -86,7 +60,7 @@ function controlbar() {
  */
 function readMode(pr, puplugin, $) {
     var $root = $("html"),
-    bgtmpl = "<div class=\"simpread-read-root\">\n                        <sr-read>\n                            <sr-rd-title></sr-rd-title>\n                            <sr-rd-desc></sr-rd-desc>\n                            <sr-rd-content></sr-rd-content>\n                            <sr-page></sr-page>\n                            <sr-rd-footer>\n                                <sr-rd-footer-text style=\"display:none;\">\u5168\u6587\u5B8C</sr-rd-footer-text>\n                                <sr-rd-footer-copywrite>\n                                    <span>\u672C\u6587\u7531 \u7B80\u60A6 </span><a href=\"http://ksria.com/simpread\" target=\"_blank\">SimpRead</a><span> \u4F18\u5316\uFF0C\u7528\u4EE5\u63D0\u5347\u9605\u8BFB\u4F53\u9A8C\u3002</span>\n                                </sr-rd-footer-copywrite>\n                                </sr-rd-footer>\n                            <sr-rd-crlbar>\n                                <fab class=\"pocket\"></fab>\n                                <fab class=\"crlbar-close\"></fab>\n                            </sr-rd-crlbar>\n                        </sr-read>\n                    </div>",
+    bgtmpl = "<div class=\"simpread-read-root\">\n                        <sr-read>\n                            <sr-rd-title></sr-rd-title>\n                            <sr-rd-desc></sr-rd-desc>\n                            <sr-rd-content></sr-rd-content>\n                            <sr-page></sr-page>\n                            <sr-rd-footer>\n                                <sr-rd-footer-text style=\"display:none;\">\u5168\u6587\u5B8C</sr-rd-footer-text>\n                                <sr-rd-footer-copywrite>\n                                    <span>\u672C\u6587\u7531 \u7B80\u60A6 </span><a href=\"http://ksria.com/simpread\" target=\"_blank\">SimpRead</a><span> \u4F18\u5316\uFF0C\u7528\u4EE5\u63D0\u5347\u9605\u8BFB\u4F53\u9A8C\u3002</span>\n                                </sr-rd-footer-copywrite>\n                                </sr-rd-footer>\n                            <sr-rd-crlbar>\n                                <fab class=\"evernote\"></fab>\n                                <fab class=\"pocket\"></fab>\n                                <fab class=\"crlbar-close\"></fab>\n                            </sr-rd-crlbar>\n                        </sr-read>\n                    </div>",
         multiple = function multiple(include, avatar) {
         var contents = [],
             names = avatar[0].name,
@@ -138,6 +112,7 @@ function readMode(pr, puplugin, $) {
 
     setStyle(puplugin.Plugin("style"));
     controlbar();
+    service();
 
     // exit
     $(".simpread-read-root sr-rd-crlbar fab.crlbar-close").one("click", function (event) {
@@ -147,4 +122,53 @@ function readMode(pr, puplugin, $) {
         $("body").removeClass("simpread-hidden");
         $(".simpread-read-root").remove();
     });
+}
+
+/**
+ * Service
+ */
+function service() {
+    var clickEvent = function clickEvent(event) {
+        var server = "http://192.168.199.130:3000",
+            type = event.target.className,
+            notify = new Notify().Render({ state: "loading", content: "保存中，请稍后！" }),
+            success = function success(result, textStatus, jqXHR) {
+            console.log(result, textStatus, jqXHR);
+            notify.complete();
+            if (result.code == 200) {
+                new Notify().Render("保存成功！");
+            } else new Notify().Render("保存失败，请稍候再试！");
+        },
+            failed = function failed(jqXHR, textStatus, error) {
+            console.error(jqXHR, textStatus, error);
+            notify.complete();
+            new Notify().Render("保存失败，请稍候再试！");
+        };
+        if (type == "pocket") {
+            $.ajax({
+                url: server + "/service/add",
+                type: "POST",
+                data: {
+                    name: "pocket",
+                    token: "68d4c6c6-7460-b8e3-96c5-7a176f",
+                    tags: "temp",
+                    title: pr.html.title,
+                    url: location.href
+                }
+            }).done(success).fail(failed);
+        } else if (type == "evernote") {
+            $.ajax({
+                url: server + "/evernote/add",
+                type: "POST",
+                headers: { sandbox: false, china: false, type: "evernote" },
+                data: {
+                    token: "S=s1:U=120a6:E=16739f21c19:C=15fe240ee38:P=81:A=wonle-9146:V=2:H=e95d8333616d0ec4946bbfca9e5b9c6d",
+                    title: pr.html.title,
+                    content: pr.html.content
+                }
+            }).done(success).fail(failed);
+        }
+    };
+    $("sr-rd-crlbar fab.pocket").click(clickEvent);
+    $("sr-rd-crlbar fab.evernote").click(clickEvent);
 }
