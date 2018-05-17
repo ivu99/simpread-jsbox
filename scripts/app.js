@@ -46,10 +46,10 @@ function controlbar() {
     var cur = 0;
     $(window).scroll(function (event) {
         var next = $(window).scrollTop();
-        if (next > cur) {
-            $("fab").css({ opacity: 0 });
+        if ( next > cur ) {
+            $( "sr-rd-crlbar" ).css({ opacity: 0 });
         } else {
-            $("fab").css({ opacity: 1 });
+            $( "sr-rd-crlbar" ).css({ opacity: 1 });
         }
         cur = next;
     });
@@ -142,7 +142,7 @@ function service() {
         var server = "http://192.168.199.130:3000",
                 // https://simpread.herokuapp.com
             type = event.target.className,
-            token = simpread_config.secret ? simpread_config.secret[type] : "",
+            token = simpread_config.secret ? simpread_config.secret[type].access_token : "",
             notify = new Notify().Render({ state: "loading", content: "保存中，请稍后！" }),
             success = function success(result, textStatus, jqXHR) {
             console.log(result, textStatus, jqXHR);
@@ -162,7 +162,7 @@ function service() {
                 type: "POST",
                 data: {
                     name: "pocket",
-                    token,
+                    token: token,
                     tags: "temp",
                     title: pr.html.title,
                     url: location.href
@@ -181,7 +181,7 @@ function service() {
             }).done(success).fail(failed);
         }
     };
-    simpread_config.secret && simpread_config.secret.pocket   ? $("sr-rd-crlbar fab.pocket").click(clickEvent)   : $("sr-rd-crlbar fab.pocket").hide();
-    simpread_config.secret && simpread_config.secret.evernote ? $("sr-rd-crlbar fab.evernote").click(clickEvent) : $("sr-rd-crlbar fab.evernote").hide();
-    simpread_config.secret && simpread_config.secret.yinxiang ? $("sr-rd-crlbar fab.yinxiang").click(clickEvent) : $("sr-rd-crlbar fab.yinxiang").hide();
+    simpread_config.secret && simpread_config.secret.pocket   && $("sr-rd-crlbar fab.pocket").click(clickEvent)   && $("sr-rd-crlbar fab.pocket").css({ opacity: 1 });
+    simpread_config.secret && simpread_config.secret.evernote && $("sr-rd-crlbar fab.evernote").click(clickEvent) && $("sr-rd-crlbar fab.evernote").css({ opacity: 1 });
+    simpread_config.secret && simpread_config.secret.yinxiang && $("sr-rd-crlbar fab.yinxiang").click(clickEvent) && $("sr-rd-crlbar fab.yinxiang").css({ opacity: 1 });
 }
