@@ -114,10 +114,18 @@ function readMode(pr, puplugin, $) {
         setStyle(puplugin.Plugin("style"));
         controlbar();
         service();
+        close( $root );
     }, 500);
 
-    // exit
-    $(".simpread-read-root sr-rd-crlbar fab.crlbar-close").one("click", function (event) {
+}
+
+/**
+ * Close
+ * 
+ * @param {jquery} root jquery object
+ */
+function close( $root ) {
+    $(".simpread-read-root sr-rd-crlbar fab.crlbar-close").on("click", function (event) {
         $(".simpread-read-root").addClass("simpread-read-root-hide");
         $root.removeClass("simpread-theme-root").removeClass("simpread-font");
         if ($root.attr("style")) $root.attr("style", $root.attr("style").replace("font-size: 62.5%!important", ""));
