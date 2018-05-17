@@ -131,10 +131,10 @@ function readMode(pr, puplugin, $) {
  */
 function service() {
     var clickEvent = function clickEvent(event) {
-        var server = "https://simpread.herokuapp.com",
-                // http://192.168.199.130:3000
+        var server = "http://192.168.199.130:3000",
+                // https://simpread.herokuapp.com
             type = event.target.className,
-            token = simpread_config.secret[type],
+            token = simpread_config ? simpread_config.secret[type] : "",
             notify = new Notify().Render({ state: "loading", content: "保存中，请稍后！" }),
             success = function success(result, textStatus, jqXHR) {
             console.log(result, textStatus, jqXHR);
