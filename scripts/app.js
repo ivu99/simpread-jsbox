@@ -113,7 +113,7 @@ function readMode(pr, puplugin, $) {
     setTimeout(function () {
         setStyle(puplugin.Plugin("style"));
         controlbar();
-        service(pr);
+        service();
     }, 500);
 
     // exit
