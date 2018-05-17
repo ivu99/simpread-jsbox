@@ -134,7 +134,7 @@ function service() {
         var server = "http://192.168.199.130:3000",
                 // https://simpread.herokuapp.com
             type = event.target.className,
-            token = simpread_config ? simpread_config.secret[type] : "",
+            token = simpread_config.secret ? simpread_config.secret[type] : "",
             notify = new Notify().Render({ state: "loading", content: "保存中，请稍后！" }),
             success = function success(result, textStatus, jqXHR) {
             console.log(result, textStatus, jqXHR);
@@ -173,7 +173,7 @@ function service() {
             }).done(success).fail(failed);
         }
     };
-    $("sr-rd-crlbar fab.pocket").click(clickEvent);
-    $("sr-rd-crlbar fab.evernote").click(clickEvent);
-    $("sr-rd-crlbar fab.yinxiang").click(clickEvent);
+    simpread_config.secret && simpread_config.secret.pocket   ? $("sr-rd-crlbar fab.pocket").click(clickEvent)   : $("sr-rd-crlbar fab.pocket").hide();
+    simpread_config.secret && simpread_config.secret.evernote ? $("sr-rd-crlbar fab.evernote").click(clickEvent) : $("sr-rd-crlbar fab.evernote").hide();
+    simpread_config.secret && simpread_config.secret.yinxiang ? $("sr-rd-crlbar fab.yinxiang").click(clickEvent) : $("sr-rd-crlbar fab.yinxiang").hide();
 }

@@ -20,7 +20,7 @@ function getConfig() {
     if ( file != undefined ) {
         config += file.string + ";";
     } else {
-        config += "undefined;";
+        config += "{};";
     }
     return config;
 }
