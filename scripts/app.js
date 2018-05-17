@@ -44,15 +44,19 @@ function setStyle(style) {
  */
 function controlbar() {
     var cur = 0;
-    $(window).scroll(function (event) {
-        var next = $(window).scrollTop();
-        if ( next > cur ) {
-            $( "sr-rd-crlbar" ).css({ opacity: 0 });
-        } else {
-            $( "sr-rd-crlbar" ).css({ opacity: 1 });
-        }
-        cur = next;
-    });
+        $(window).scroll(function (event) {
+            var next = $(window).scrollTop();
+            if (next > cur) {
+                $("sr-rd-crlbar").css({ opacity: 0 });
+                $("sr-crlbar-group").css({ opacity: 0 });
+            } else {
+                $("sr-rd-crlbar").css({ opacity: 1 });
+            }
+            cur = next;
+        });
+        $(".simpread-read-root sr-rd-crlbar fab.anchor").on("click", function (event) {
+            $("sr-crlbar-group").css({ opacity: 1, display: "block" });
+        });
 }
 
 /**
@@ -60,7 +64,7 @@ function controlbar() {
  */
 function readMode(pr, puplugin, $) {
     var $root = $("html"),
-    bgtmpl = "<div class=\"simpread-read-root\">\n                        <sr-read>\n                            <sr-rd-title></sr-rd-title>\n                            <sr-rd-desc></sr-rd-desc>\n                            <sr-rd-content></sr-rd-content>\n                            <sr-page></sr-page>\n                            <sr-rd-footer>\n                                <sr-rd-footer-text style=\"display:none;\">\u5168\u6587\u5B8C</sr-rd-footer-text>\n                                <sr-rd-footer-copywrite>\n                                    <span>\u672C\u6587\u7531 \u7B80\u60A6 </span><a href=\"http://ksria.com/simpread\" target=\"_blank\">SimpRead</a><span> \u4F18\u5316\uFF0C\u7528\u4EE5\u63D0\u5347\u9605\u8BFB\u4F53\u9A8C\u3002</span>\n                                </sr-rd-footer-copywrite>\n                                </sr-rd-footer>\n                            <sr-rd-crlbar>\n                                <fab class=\"yinxiang\"></fab>\n                                <fab class=\"evernote\"></fab>\n                                <fab class=\"pocket\"></fab>\n                                <fab class=\"crlbar-close\"></fab>\n                            </sr-rd-crlbar>\n                        </sr-read>\n                    </div>",
+    bgtmpl = "<div class=\"simpread-read-root\">\n                        <sr-read>\n                            <sr-rd-title></sr-rd-title>\n                            <sr-rd-desc></sr-rd-desc>\n                            <sr-rd-content></sr-rd-content>\n                            <sr-page></sr-page>\n                            <sr-rd-footer>\n                                <sr-rd-footer-text style=\"display:none;\">\u5168\u6587\u5B8C</sr-rd-footer-text>\n                                <sr-rd-footer-copywrite>\n                                    <span>\u672C\u6587\u7531 \u7B80\u60A6 </span><a href=\"http://ksria.com/simpread\" target=\"_blank\">SimpRead</a><span> \u4F18\u5316\uFF0C\u7528\u4EE5\u63D0\u5347\u9605\u8BFB\u4F53\u9A8C\u3002</span>\n                                </sr-rd-footer-copywrite>\n                                </sr-rd-footer>\n                            <sr-rd-crlbar>\n                                <sr-crlbar-group>\n                                    <fab class=\"yinxiang\"></fab>\n                                    <fab class=\"evernote\"></fab>\n                                    <fab class=\"pocket\"></fab>\n                                </sr-crlbar-group>\n                                <fab class=\"anchor\" style=\"opacity:1;\"></fab>\n                                <fab class=\"crlbar-close\"></fab>\n                            </sr-rd-crlbar>\n                        </sr-read>\n                    </div>",
         multiple = function multiple(include, avatar) {
         var contents = [],
             names = avatar[0].name,
