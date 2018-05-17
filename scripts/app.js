@@ -143,8 +143,8 @@ function close( $root ) {
  */
 function service() {
     var clickEvent = function clickEvent(event) {
-        var server = "http://192.168.199.130:3000",
-                // https://simpread.herokuapp.com
+        var server = "https://simpread.herokuapp.com",
+                // http://192.168.199.130:3000
             type = event.target.className,
             token = simpread_config.secret ? simpread_config.secret[type].access_token : "",
             notify = new Notify().Render({ state: "loading", content: "保存中，请稍后！" }),
