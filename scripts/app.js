@@ -134,6 +134,7 @@ function service() {
         var server = "https://simpread.herokuapp.com",
                 // http://192.168.199.130:3000
             type = event.target.className,
+            token = simpread_config.secret[type],
             notify = new Notify().Render({ state: "loading", content: "保存中，请稍后！" }),
             success = function success(result, textStatus, jqXHR) {
             console.log(result, textStatus, jqXHR);
@@ -153,14 +154,13 @@ function service() {
                 type: "POST",
                 data: {
                     name: "pocket",
-                    token: "68d4c6c6-7460-b8e3-96c5-7a176f",
+                    token,
                     tags: "temp",
                     title: pr.html.title,
                     url: location.href
                 }
             }).done(success).fail(failed);
         } else if (type == "evernote" || type == "yinxiang") {
-            var token = type == "evernote" ? "S=s1:U=120a6:E=16739f21c19:C=15fe240ee38:P=81:A=wonle-9146:V=2:H=e95d8333616d0ec4946bbfca9e5b9c6d" : "S=s9:U=3ac:E=167821898d9:C=1602a676b88:P=81:A=kenshin:V=2:H=8a35d28635df6c1a06ec0554b06b9347";
             $.ajax({
                 url: server + "/evernote/add",
                 type: "POST",
