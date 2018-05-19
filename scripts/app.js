@@ -14,11 +14,23 @@ if (pr.state == "none") {
  * @return {string} ipad and iphone
  */
 function userAgent() {
-    var ua = navigator.userAgent.toLowerCase();
-    if (ua.match(/iphone/i) == "iphone") {
+    if (/iphone|android/i.test(navigator.userAgent)) {
         return "iphone";
     } else {
         return "ipad";
+    }
+}
+
+/**
+ * Platform
+ * 
+ * @return {string} pc and mobile
+ */
+function platform() {
+    if (/win|mac/i.test(navigator.platform)) {
+        return "pc";
+    } else {
+        return "mobile";
     }
 }
 
@@ -64,7 +76,7 @@ function controlbar() {
  */
 function readMode(pr, puplugin, $) {
     var $root = $("html"),
-    bgtmpl = "<div class=\"simpread-read-root\">\n                        <sr-read>\n                            <sr-rd-title></sr-rd-title>\n                            <sr-rd-desc></sr-rd-desc>\n                            <sr-rd-content></sr-rd-content>\n                            <sr-page></sr-page>\n                            <sr-rd-footer>\n                                <sr-rd-footer-text style=\"display:none;\">\u5168\u6587\u5B8C</sr-rd-footer-text>\n                                <sr-rd-footer-copywrite>\n                                    <span>\u672C\u6587\u7531 \u7B80\u60A6 </span><a href=\"http://ksria.com/simpread\" target=\"_blank\">SimpRead</a><span> \u4F18\u5316\uFF0C\u7528\u4EE5\u63D0\u5347\u9605\u8BFB\u4F53\u9A8C\u3002</span>\n                                </sr-rd-footer-copywrite>\n                                </sr-rd-footer>\n                            <sr-rd-crlbar>\n                                <sr-crlbar-group>\n                                    <fab class=\"dropbox\"></fab>\n                                    <fab class=\"yinxiang\"></fab>\n                                    <fab class=\"evernote\"></fab>\n                                    <fab class=\"pocket\"></fab>\n                                </sr-crlbar-group>\n                                <fab class=\"anchor\" style=\"opacity:1;\"></fab>\n                                <fab class=\"crlbar-close\"></fab>\n                            </sr-rd-crlbar>\n                        </sr-read>\n                    </div>",
+    bgtmpl = "<div class=\"simpread-read-root\">\n                        <sr-read>\n                            <sr-rd-title></sr-rd-title>\n                            <sr-rd-desc></sr-rd-desc>\n                            <sr-rd-content></sr-rd-content>\n                            <sr-page></sr-page>\n                            <sr-rd-footer>\n                                <sr-rd-footer-text style=\"display:none;\">\u5168\u6587\u5B8C</sr-rd-footer-text>\n                                <sr-rd-footer-copywrite>\n                                    <span>\u672C\u6587\u7531 \u7B80\u60A6 </span><a href=\"http://ksria.com/simpread\" target=\"_blank\">SimpRead</a><span> \u4F18\u5316\uFF0C\u7528\u4EE5\u63D0\u5347\u9605\u8BFB\u4F53\u9A8C\u3002</span>\n                                </sr-rd-footer-copywrite>\n                                </sr-rd-footer>\n                            <sr-rd-crlbar>\n                                <sr-crlbar-group>\n                                    <fab class=\"bear\"></fab>\n                                    <fab class=\"dropbox\"></fab>\n                                    <fab class=\"yinxiang\"></fab>\n                                    <fab class=\"evernote\"></fab>\n                                    <fab class=\"pocket\"></fab>\n                                </sr-crlbar-group>\n                                <fab class=\"anchor\" style=\"opacity:1;\"></fab>\n                                <fab class=\"crlbar-close\"></fab>\n                            </sr-rd-crlbar>\n                        </sr-read>\n                    </div>",
         multiple = function multiple(include, avatar) {
         var contents = [],
             names = avatar[0].name,
@@ -146,7 +158,7 @@ function service() {
         var server = "https://simpread.herokuapp.com",
                 // http://192.168.199.130:3000
             type = event.target.className,
-            token = simpread_config.secret ? simpread_config.secret[type].access_token : "",
+            token = simpread_config.secret && simpread_config.secret[type] ? simpread_config.secret[type].access_token : "",
             notify = new Notify().Render({ state: "loading", content: "保存中，请稍后！" }),
             success = function success(result, textStatus, jqXHR) {
             console.log(result, textStatus, jqXHR);
@@ -209,12 +221,21 @@ function service() {
                 processData : false,
                 contentType : false
             }).done( ( data, textStatus, jqXHR ) => success( {code:200, data}, textStatus, jqXHR )).fail( failed );
+        } else if ( type == "bear" ) {
+            var _mdService = new TurndownService(),
+                _data = _mdService.turndown(clearMD($("sr-rd-content").html()));
+            notify.complete();
+            new Notify().Render("保存成功，2 秒后，将会提示打开 Bear");
+            setTimeout(function () {
+                window.location.href = "bear://x-callback-url/create?title=" + encodeURIComponent(pr.html.title) + "&text=" + encodeURIComponent(_data) + "&tags=simpread";
+            }, 2000);
         }
     };
     simpread_config.secret && simpread_config.secret.pocket   && $("sr-rd-crlbar fab.pocket").click(clickEvent)   && $("sr-rd-crlbar fab.pocket").css({ opacity: 1 });
     simpread_config.secret && simpread_config.secret.evernote && $("sr-rd-crlbar fab.evernote").click(clickEvent) && $("sr-rd-crlbar fab.evernote").css({ opacity: 1 });
     simpread_config.secret && simpread_config.secret.yinxiang && $("sr-rd-crlbar fab.yinxiang").click(clickEvent) && $("sr-rd-crlbar fab.yinxiang").css({ opacity: 1 });
     simpread_config.secret && simpread_config.secret.yinxiang && $("sr-rd-crlbar fab.dropbox").click(clickEvent)  && $("sr-rd-crlbar fab.dropbox").css({ opacity: 1 });
+    platform() != "pc"     && $("sr-rd-crlbar fab.bear").click(clickEvent)     && $("sr-rd-crlbar fab.bear").css({ opacity: 1 });
 }
 
 /**
