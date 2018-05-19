@@ -3,9 +3,10 @@
  * Enter
  */
 $ui.menu({
-    items: [ "阅读模式", "设定" ],
+    items: [ "阅读模式", "打开到阅读器", "设定" ],
     handler: function(title, idx) {
         if ( idx == 0 ) inject();
+        if ( idx == 1 ) open();
         else setting();
     }
 });
@@ -34,6 +35,14 @@ function inject() {
         website = $file.read( "scripts/website.js" ).string,
         app     = $file.read( "scripts/app.js"     ).string;
     $safari.inject( vernder + css + website + getConfig() + app );
+}
+
+/**
+ * Open link to SimpRead reader
+ */
+function open() {
+    const link = $context.link;
+    $app.openURL( "jsbox://run?name=simpread-reader&url=" + link );
 }
 
 /**
