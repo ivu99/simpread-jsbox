@@ -180,7 +180,7 @@ function service() {
                 data: {
                     token: token,
                     title: pr.html.title,
-                    content: pr.html.include
+                    content: html2enml($("sr-rd-content").html(), pr.org_url)
                 }
             }).done(success).fail(failed);
         }
@@ -188,4 +188,51 @@ function service() {
     simpread_config.secret && simpread_config.secret.pocket   && $("sr-rd-crlbar fab.pocket").click(clickEvent)   && $("sr-rd-crlbar fab.pocket").css({ opacity: 1 });
     simpread_config.secret && simpread_config.secret.evernote && $("sr-rd-crlbar fab.evernote").click(clickEvent) && $("sr-rd-crlbar fab.evernote").css({ opacity: 1 });
     simpread_config.secret && simpread_config.secret.yinxiang && $("sr-rd-crlbar fab.yinxiang").click(clickEvent) && $("sr-rd-crlbar fab.yinxiang").css({ opacity: 1 });
+}
+
+/**
+ * Html convert to enml( from simpread util.HTML2ENML )
+ * 
+ * @param  {string} convert string
+ * @param  {string} url
+ * 
+ * @return {string} convert string
+ */
+function html2enml(html, url) {
+    var $target = void 0,
+        str = void 0;
+    var tags = ["figure", "sup", "hr", "section", "applet", "base", "basefont", "bgsound", "blink", "body", "button", "dir", "embed", "fieldset", "form", "frame", "frameset", "head", "html", "iframe", "ilayer", "input", "isindex", "label", "layer", "legend", "link", "marquee", "menu", "meta", "noframes", "noscript", "object", "optgroup", "option", "param", "plaintext", "script", "select", "style", "textarea", "xml"];
+
+    $("html").append("<div id=\"simpread-en\" style=\"display: none;\">" + html + "</div>");
+    $target = $("#simpread-en");
+    $target.find("img:not(.sr-rd-content-nobeautify)").map(function (index, item) {
+        $("<div>").attr("style", "width: " + item.naturalWidth + "px; height:" + item.naturalHeight + "px; background: url(" + item.src + ")").replaceAll($(item));
+    });
+    $target.find(tags.join(",")).map(function (index, item) {
+        $("<div>").html($(item).html()).replaceAll($(item));
+    });
+    $target.find(tags.join(",")).remove();
+    str = $target.html();
+    $target.remove();
+
+    try {
+        str = "<blockquote>\u672C\u6587\u7531 <a href=\"http://ksria.com/simpread\" target=\"_blank\">\u7B80\u60A6 SimpRead</a> \u8F6C\u7801\uFF0C\u539F\u6587\u5730\u5740 <a href=\"" + url + "\" target=\"_blank\">" + url + "</a></blockquote><hr></hr><br></br>" + str;
+        str = str.replace(/(id|class|onclick|ondblclick|accesskey|data|dynsrc|tabindex)="[\w- ]+"/g, "")
+        //.replace( / style=[ \w="-:\/\/:#;]+/ig, "" )             // style="xxxx"
+        .replace(/label=[\u4e00-\u9fa5 \w="-:\/\/:#;]+"/ig, "") // label="xxxx"
+        .replace(/ finallycleanhtml=[\u4e00-\u9fa5 \w="-:\/\/:#;]+"/ig, "") // finallycleanhtml="xxxx"
+        .replace(/<img[ \w="-:\/\/?!]+>/ig, "") // <img>
+        .replace(/data[-\w]*=[ \w=\-.:\/\/?!;+"]+"[ ]?/ig, "") // data="xxx" || data-xxx="xxx"
+        .replace(/href="javascript:[\w()"]+/ig, "") // href="javascript:xxx"
+        .replace(/sr-blockquote/ig, "blockquote") // sr-blockquote to blockquote
+        .replace(/<p[ -\w*= \w=\-.:\/\/?!;+"]*>/ig, "") // <p> || <p > || <p xxx="xxx">
+        .replace(/<figcaption[ -\w*= \w=\-.:\/\/?!;+"]*>/ig, "") // <figcaption >
+        .replace(/<\/figcaption>/ig, "") // </figcaption>
+        .replace(/<\/br>/ig, "") // </br>
+        .replace(/<br>/ig, "<br></br>").replace(/<\/p>/ig, "<br></br>");
+
+        return str;
+    } catch (error) {
+        return "<div>\u8F6C\u6362\u5931\u8D25\uFF0C\u539F\u6587\u5730\u5740 <a href=\"" + url + "\" target=\"_blank\">" + url + "</a></div>";
+    }
 }
