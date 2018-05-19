@@ -64,7 +64,7 @@ function controlbar() {
  */
 function readMode(pr, puplugin, $) {
     var $root = $("html"),
-    bgtmpl = "<div class=\"simpread-read-root\">\n                        <sr-read>\n                            <sr-rd-title></sr-rd-title>\n                            <sr-rd-desc></sr-rd-desc>\n                            <sr-rd-content></sr-rd-content>\n                            <sr-page></sr-page>\n                            <sr-rd-footer>\n                                <sr-rd-footer-text style=\"display:none;\">\u5168\u6587\u5B8C</sr-rd-footer-text>\n                                <sr-rd-footer-copywrite>\n                                    <span>\u672C\u6587\u7531 \u7B80\u60A6 </span><a href=\"http://ksria.com/simpread\" target=\"_blank\">SimpRead</a><span> \u4F18\u5316\uFF0C\u7528\u4EE5\u63D0\u5347\u9605\u8BFB\u4F53\u9A8C\u3002</span>\n                                </sr-rd-footer-copywrite>\n                                </sr-rd-footer>\n                            <sr-rd-crlbar>\n                                <sr-crlbar-group>\n                                    <fab class=\"yinxiang\"></fab>\n                                    <fab class=\"evernote\"></fab>\n                                    <fab class=\"pocket\"></fab>\n                                </sr-crlbar-group>\n                                <fab class=\"anchor\" style=\"opacity:1;\"></fab>\n                                <fab class=\"crlbar-close\"></fab>\n                            </sr-rd-crlbar>\n                        </sr-read>\n                    </div>",
+    bgtmpl = "<div class=\"simpread-read-root\">\n                        <sr-read>\n                            <sr-rd-title></sr-rd-title>\n                            <sr-rd-desc></sr-rd-desc>\n                            <sr-rd-content></sr-rd-content>\n                            <sr-page></sr-page>\n                            <sr-rd-footer>\n                                <sr-rd-footer-text style=\"display:none;\">\u5168\u6587\u5B8C</sr-rd-footer-text>\n                                <sr-rd-footer-copywrite>\n                                    <span>\u672C\u6587\u7531 \u7B80\u60A6 </span><a href=\"http://ksria.com/simpread\" target=\"_blank\">SimpRead</a><span> \u4F18\u5316\uFF0C\u7528\u4EE5\u63D0\u5347\u9605\u8BFB\u4F53\u9A8C\u3002</span>\n                                </sr-rd-footer-copywrite>\n                                </sr-rd-footer>\n                            <sr-rd-crlbar>\n                                <sr-crlbar-group>\n                                    <fab class=\"dropbox\"></fab>\n                                    <fab class=\"yinxiang\"></fab>\n                                    <fab class=\"evernote\"></fab>\n                                    <fab class=\"pocket\"></fab>\n                                </sr-crlbar-group>\n                                <fab class=\"anchor\" style=\"opacity:1;\"></fab>\n                                <fab class=\"crlbar-close\"></fab>\n                            </sr-rd-crlbar>\n                        </sr-read>\n                    </div>",
         multiple = function multiple(include, avatar) {
         var contents = [],
             names = avatar[0].name,
@@ -183,11 +183,38 @@ function service() {
                     content: html2enml($("sr-rd-content").html(), pr.org_url)
                 }
             }).done(success).fail(failed);
+        } else if ( type == "dropbox" ) {
+            const mdService = new TurndownService(),
+                  data      = mdService.turndown( clearMD( $("sr-rd-content").html() )),
+                  path      = "md/",
+                  name      = pr.html.title + ".md",
+                  safename  = data => data.replace( /\//ig, "" ),
+                  args      = { path: `/${path}${safename(name)}`, mode: "overwrite" },
+                  safejson  = args => {
+                    const charsToEncode = /[\u007f-\uffff]/g;
+                    return JSON.stringify(args).replace( charsToEncode, c => {
+                        return '\\u' + ( '000' + c.charCodeAt(0).toString(16)).slice(-4);
+                    });
+                  };
+
+            $.ajax({
+                url     : "https://content.dropboxapi.com/2/files/upload",
+                type    : "POST",
+                data    : data,
+                headers : {
+                    "Authorization"   : `Bearer ${token}`,
+                    "Dropbox-API-Arg" : safejson( args ),
+                    "Content-Type"    : "application/octet-stream"
+                },
+                processData : false,
+                contentType : false
+            }).done( ( data, textStatus, jqXHR ) => success( {code:200, data}, textStatus, jqXHR )).fail( failed );
         }
     };
     simpread_config.secret && simpread_config.secret.pocket   && $("sr-rd-crlbar fab.pocket").click(clickEvent)   && $("sr-rd-crlbar fab.pocket").css({ opacity: 1 });
     simpread_config.secret && simpread_config.secret.evernote && $("sr-rd-crlbar fab.evernote").click(clickEvent) && $("sr-rd-crlbar fab.evernote").css({ opacity: 1 });
     simpread_config.secret && simpread_config.secret.yinxiang && $("sr-rd-crlbar fab.yinxiang").click(clickEvent) && $("sr-rd-crlbar fab.yinxiang").css({ opacity: 1 });
+    simpread_config.secret && simpread_config.secret.yinxiang && $("sr-rd-crlbar fab.dropbox").click(clickEvent)  && $("sr-rd-crlbar fab.dropbox").css({ opacity: 1 });
 }
 
 /**
@@ -235,4 +262,15 @@ function html2enml(html, url) {
     } catch (error) {
         return "<div>\u8F6C\u6362\u5931\u8D25\uFF0C\u539F\u6587\u5730\u5740 <a href=\"" + url + "\" target=\"_blank\">" + url + "</a></div>";
     }
+}
+
+/**
+ * Clear Html to MD, erorr <tag>( from simpread util.HTML2ENML )
+ * 
+ * @param {string} convert string
+ */
+function clearMD(str) {
+    str = "<blockquote><p>\u672C\u6587\u7531 <a href=\"http://ksria.com/simpread/\" target=\"_blank\">\u7B80\u60A6 SimpRead</a> \u8F6C\u7801\uFF0C \u539F\u6587\u5730\u5740 <a href=\"" + window.location.href + "\" target=\"_blank\">" + window.location.href + "</a></p></blockquote>\r\n\r\n " + str;
+    str = str.replace(/<\/?(ins|font|span|div|canvas|noscript|fig\w+)[ -\w*= \w=\-.:&\/\/?!;,%+()#'"{}\u4e00-\u9fa5]*>/ig, "").replace(/sr-blockquote/ig, "blockquote").replace(/<\/?style[ -\w*= \w=\-.:&\/\/?!;,+()#"\S]*>/ig, "").replace(/(name|lable)=[\u4e00-\u9fa5 \w="-:\/\/:#;]+"/ig, "");
+    return str;
 }
