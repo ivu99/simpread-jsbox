@@ -159,8 +159,8 @@ function setting() {
                                     return;
                                 }
                                 var success = $file.write({
-                                    data: $data({string: resp.data }),
-                                    path: "website_list.json"
+                                    data: $data({string: "var website_list = " + JSON.stringify(resp.data) + ";" }),
+                                    path: "scripts/website.js"
                                 });
                                 $ui.alert( "导入成功，共计：" + resp.data.sites.length + " 条站点配置。" );
                             }
