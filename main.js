@@ -43,7 +43,7 @@ function inject() {
 function open() {
     var names  = [ "simpread-reader", "简悦 · 阅读器" ],
         addins = $addin.list,
-        name    = "",
+        name   = "",
         link   = $context.link;
 
     Object.keys( addins ).forEach( function( idx ) {
