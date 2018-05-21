@@ -108,7 +108,7 @@ function readMode(pr, puplugin, $) {
         if (!prev && !next) $("sr-page").remove();else $("sr-page").html(btn_prev + btn_next);
     },
         special = function special() {
-        if (pr.html.include.includes && pr.html.include.includes("sr-rd-content-error")) {
+        if (pr.html.include && pr.html.include.includes && pr.html.include.includes("sr-rd-content-error")) {
             new Notify().Render("\u5F53\u524D\u9875\u9762\u7ED3\u6784\u6539\u53D8\u5BFC\u81F4\u4E0D\u5339\u914D\u9605\u8BFB\u6A21\u5F0F\uFF0C\u8BF7\u62A5\u544A <a href=\"https://github.com/Kenshin/simpread/issues/new\" target=\"_blank\">\u6B64\u9875\u9762</a>");
             return true;
         }
