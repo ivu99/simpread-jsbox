@@ -42,7 +42,11 @@ function inject() {
  */
 function open() {
     const link = $context.link;
-    $app.openURL( "jsbox://run?name=simpread-reader&url=" + link );
+    if ( /http(s)?:\/\//.test( link ) ) {
+        $app.openURL( "jsbox://run?name=simpread-reader&url=" + link );
+    } else {
+        $ui.alert( "当前 URL 非法，请确保正确的 URL。" );
+    }
 }
 
 /**
