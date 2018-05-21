@@ -55,7 +55,10 @@ function open() {
     if ( /http(s)?:\/\//.test( link )) {
         if ( name == "" ) {
             $ui.alert( "请确保已经安装 【简悦 · 阅读器】。" );
-        } else $app.openURL( "jsbox://run?name=" + encodeURIComponent(name) + "&url=" + link );
+        } else {
+            $app.openURL( "jsbox://run?name=" + encodeURIComponent(name) + "&url=" + link );
+            $context.close();
+        }
     } else {
         $ui.alert( "当前 URL 非法，请确保正确的 URL。" );
     }
