@@ -3,7 +3,7 @@
  * Enter
  */
 $ui.menu({
-    items: [ "阅读模式", "打开到阅读器", "设定" ],
+    items: [ "阅读模式", "打开到「阅读器」", "设定" ],
     handler: function(title, idx) {
         if ( idx == 0 ) inject();
         if ( idx == 1 ) open();
