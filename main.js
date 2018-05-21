@@ -41,9 +41,21 @@ function inject() {
  * Open link to SimpRead reader
  */
 function open() {
-    const link = $context.link;
-    if ( /http(s)?:\/\//.test( link ) ) {
-        $app.openURL( "jsbox://run?name=simpread-reader&url=" + link );
+    var names  = [ "simpread-reader", "简悦 · 阅读器" ],
+        addins = $addin.list,
+        name    = "",
+        link   = $context.link;
+
+    Object.keys( addins ).forEach( function( idx ) {
+        if ( names.includes( addins[idx].name )) {
+            name = addins[idx].name;
+        }
+    });
+
+    if ( /http(s)?:\/\//.test( link )) {
+        if ( name == "" ) {
+            $ui.alert( "请确保已经安装 【简悦 · 阅读器】。" );
+        } else $app.openURL( "jsbox://run?name=" + encodeURIComponent(name) + "&url=" + link );
     } else {
         $ui.alert( "当前 URL 非法，请确保正确的 URL。" );
     }
