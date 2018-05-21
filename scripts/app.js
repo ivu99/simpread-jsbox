@@ -49,6 +49,12 @@ function setStyle(style) {
         style.Layout("10%");
         $("head").append("<style type=\"text/css\">" + theme_pixyii + "</style>");
     }
+
+    var maxWidth = $(document).width(),
+        width    = $("sr-read").width();
+    if ( width >= maxWidth ) {
+        $("sr-read").css({ "min-width": maxWidth - 20 + "px" });
+    }
 }
 
 /**
