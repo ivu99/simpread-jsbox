@@ -141,6 +141,37 @@ function setting() {
             {
                 type: "button",
                 props: {
+                    title: "手动同步适配列表",
+                    bgcolor: $color("#2196F3")
+                },
+                layout: function(make, view) {
+                    make.left.right.inset( 5 );
+                    make.top.offset( 340 );
+                    make.height.equalTo( 50 );
+                },
+                events: {
+                    tapped: function( sender ) {
+                        $http.get({
+                            url: "http://ojec5ddd5.bkt.clouddn.com/website_list_v3.json",
+                            handler: function( resp ) {
+                                if ( resp.error != null ) {
+                                    $ui.error( "导入发生了错误，请稍后再试！" );
+                                    return;
+                                }
+                                var success = $file.write({
+                                    data: $data({string: resp.data }),
+                                    path: "website_list.json"
+                                });
+                                $ui.alert( "导入成功，共计：" + resp.data.sites.length + " 条站点配置。" );
+                            }
+                        })
+                    }
+                }
+            },
+            /*
+            {
+                type: "button",
+                props: {
                     title: "加载测试数据",
                     bgcolor: $color("#1976D2")
                 },
@@ -173,6 +204,7 @@ function setting() {
                     }
                 }
             }
+            */
         ]
     })
 }
