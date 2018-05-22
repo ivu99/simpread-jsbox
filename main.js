@@ -215,8 +215,8 @@ function about() {
                 },
                 layout: function(make, view) {
                   make.centerX.equalTo(view.super)
-                  make.size.equalTo($size(60, 60))
-                  make.top.offset( 10 );
+                  make.size.equalTo($size(96, 96))
+                  make.top.offset( 20 );
                 }
             },
             {
@@ -228,7 +228,7 @@ function about() {
                     align: $align.center
                 },
                 layout: function(make, view) {
-                    make.top.offset( 75 );
+                    make.top.offset( 120 );
                     make.left.right.inset( 5 );
                 }
             },
@@ -241,7 +241,7 @@ function about() {
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
-                    make.top.offset( 100 );
+                    make.top.offset( 180 );
                     make.height.equalTo( 50 );
                 },
                 events: {
@@ -280,7 +280,7 @@ function about() {
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
-                    make.top.offset( 160 );
+                    make.top.offset( 240 );
                     make.height.equalTo( 50 );
                 },
                 events: {
@@ -292,29 +292,12 @@ function about() {
             {
                 type: "button",
                 props: {
-                    title: "新手指南 >>",
-                    bgcolor: $color("#2196F3")
-                },
-                layout: function(make, view) {
-                    make.left.right.inset( 5 );
-                    make.top.offset( 220 );
-                    make.height.equalTo( 50 );
-                },
-                events: {
-                    tapped: function( sender ) {
-                        $app.openURL( "https://github.com/Kenshin/simpread/wiki/jsbox" );
-                    }
-                }
-            },
-            {
-                type: "button",
-                props: {
                     title: "其它平台的简悦 >>",
                     bgcolor: $color("#2196F3")
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
-                    make.top.offset( 280 );
+                    make.top.offset( 300 );
                     make.height.equalTo( 50 );
                 },
                 events: {
@@ -331,7 +314,7 @@ function about() {
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
-                    make.top.offset( 340 );
+                    make.top.offset( 360 );
                     make.height.equalTo( 50 );
                 },
                 events: {
@@ -351,7 +334,7 @@ function about() {
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
-                    make.top.offset( 400 );
+                    make.top.offset( 420 );
                     make.height.equalTo( 50 );
                 },
                 events: {
@@ -360,6 +343,25 @@ function about() {
                     }
                 }
             }
+            /*
+            {
+                type: "button",
+                props: {
+                    title: "新手指南 >>",
+                    bgcolor: $color("#2196F3")
+                },
+                layout: function(make, view) {
+                    make.left.right.inset( 5 );
+                    make.top.offset( 220 );
+                    make.height.equalTo( 50 );
+                },
+                events: {
+                    tapped: function( sender ) {
+                        $app.openURL( "https://github.com/Kenshin/simpread/wiki/jsbox" );
+                    }
+                }
+            },
+            */
         ]
     });
 }
