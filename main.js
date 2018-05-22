@@ -5,7 +5,7 @@
 $ui.menu({
     items: [ "阅读模式", "打开到「阅读器」", "设定", "帮助 & 支持", "关于" ],
     handler: function(title, idx) {
-        if      ( idx == 0 ) inject();
+        if      ( idx == 0 ) readMode();
         else if ( idx == 1 ) open();
         else if ( idx == 2 ) setting();
         else if ( idx == 3 ) help();
@@ -29,14 +29,23 @@ function getConfig() {
 }
 
 /**
- * Inject( Read mode )
+ * Inject
+ * 
+ * @return {string} all source
  */
 function inject() {
     var vernder = $file.read( "scripts/vender.js"  ).string,
         css     = $file.read( "scripts/css.js"     ).string,
         website = $file.read( "scripts/website.js" ).string,
         app     = $file.read( "scripts/app.js"     ).string;
-    $safari.inject( vernder + css + website + getConfig() + app );
+    return vernder + css + website + getConfig() + app;
+}
+
+/**
+ * Read mode
+ */
+function readMode() {
+    $safari.inject( inject() );
 }
 
 /**
