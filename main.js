@@ -359,23 +359,6 @@ function about() {
                         $app.openURL( "http://kenshin.wang/project.html" );
                     }
                 }
-            },
-            {
-                type: "button",
-                props: {
-                    title: "我的作品 >>",
-                    bgcolor: $color("#2196F3")
-                },
-                layout: function(make, view) {
-                    make.left.right.inset( 5 );
-                    make.top.offset( 460 );
-                    make.height.equalTo( 50 );
-                },
-                events: {
-                    tapped: function( sender ) {
-                        $app.openURL( "http://kenshin.wang/project.html" );
-                    }
-                }
             }
         ]
     });
