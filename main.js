@@ -54,6 +54,24 @@ function open() {
         }
     });
 
+    if ( name == "" ) {
+        $ui.alert({
+            message: "检测到当前环境并没有安装简悦的阅读器，是否安装？",
+            actions: [
+                {
+                    title: "安装",
+                    handler: function() {
+                        $app.openURL("https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/simpread-reader.box&name=%E7%AE%80%E6%82%A6%20%C2%B7%20%E9%98%85%E8%AF%BB%E5%99%A8");
+                    }
+                },
+                {
+                    title: "放弃",
+                }
+            ]
+        });
+        return;
+    }
+
     if ( /http(s)?:\/\//.test( link )) {
         if ( name == "" ) {
             $ui.alert( "请确保已经安装 【简悦 · 阅读器】。" );
