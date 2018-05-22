@@ -172,7 +172,7 @@ function setting() {
                 type: "button",
                 props: {
                     title: "从 Dropbox 读取你的配置信息",
-                    bgcolor: $color("#2196F3")
+                    bgcolor: $color("#1976D2")
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
