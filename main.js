@@ -100,6 +100,46 @@ function setting() {
             {
                 type: "button",
                 props: {
+                    title: "从 Dropbox 读取你的配置信息",
+                    bgcolor: $color("#1976D2")
+                },
+                layout: function(make, view) {
+                    make.left.right.inset( 5 );
+                    make.top.offset( 220 );
+                    make.height.equalTo( 50 );
+                },
+                events: {
+                    tapped: function( sender ) {
+                        var token = "C3ItaGv086wAAAAAAAAC8WE6q0XMGnFoxscYu-W8uw2IMTXfZChtPznJBlgQ2tcY",
+                            data  = { path: "/simpread_config.json" };
+                        $http.request({
+                            method: "POST",
+                            url: "https://content.dropboxapi.com/2/files/download",
+                            header: {
+                                "Authorization"   : "Bearer " + token,
+                                "Dropbox-API-Arg" : JSON.stringify( data ),
+                            },
+                            handler: function(resp) {
+                                var data = JSON.stringify( resp.data );
+                                if ( resp.error != null ) {
+                                    $ui.error( "导入发生了错误，请稍后再试！" );
+                                    return;
+                                }
+                                var success = $file.write({
+                                    data: $data({string: data }),
+                                    path: "simpread-config.json"
+                                });
+                                $("input").text = data;
+                                $ui.toast( "导入成功。" );
+                            }
+                        });
+                    }
+                }
+            },
+            /*
+            {
+                type: "button",
+                props: {
                     title: "导入到配置文件",
                     bgcolor: $color("#FF5252")
                 },
@@ -119,6 +159,7 @@ function setting() {
                     }
                 }
             },
+            */
             {
                 type: "button",
                 props: {
@@ -163,45 +204,6 @@ function setting() {
                                     path: "scripts/website.js"
                                 });
                                 $ui.alert( "导入成功，共计：" + resp.data.sites.length + " 条站点配置。" );
-                            }
-                        });
-                    }
-                }
-            },
-            {
-                type: "button",
-                props: {
-                    title: "从 Dropbox 读取你的配置信息",
-                    bgcolor: $color("#1976D2")
-                },
-                layout: function(make, view) {
-                    make.left.right.inset( 5 );
-                    make.top.offset( 400 );
-                    make.height.equalTo( 50 );
-                },
-                events: {
-                    tapped: function( sender ) {
-                        var token = "C3ItaGv086wAAAAAAAAC8WE6q0XMGnFoxscYu-W8uw2IMTXfZChtPznJBlgQ2tcY",
-                            data  = { path: "/simpread_config.json" };
-                        $http.request({
-                            method: "POST",
-                            url: "https://content.dropboxapi.com/2/files/download",
-                            header: {
-                                "Authorization"   : "Bearer " + token,
-                                "Dropbox-API-Arg" : JSON.stringify( data ),
-                            },
-                            handler: function(resp) {
-                                var data = JSON.stringify( resp.data );
-                                if ( resp.error != null ) {
-                                    $ui.error( "导入发生了错误，请稍后再试！" );
-                                    return;
-                                }
-                                var success = $file.write({
-                                    data: $data({string: data }),
-                                    path: "simpread-config.json"
-                                });
-                                $("input").text = data;
-                                $ui.toast( "导入成功。" );
                             }
                         });
                     }
