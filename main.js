@@ -205,6 +205,7 @@ function setting() {
  * About
  */
 function about() {
+    var version  = "1.0.0";
     $ui.render({
         views: [
             {
@@ -235,7 +236,7 @@ function about() {
                 type: "button",
                 props: {
                     id: "update",
-                    title: "检查更新",
+                    title: "检查更新 >>",
                     bgcolor: $color("#2196F3")
                 },
                 layout: function(make, view) {
@@ -259,9 +260,9 @@ function about() {
                                     $ui.error( "发生了错误，请稍后再试！" );
                                     return;
                                 }
-                                if ( resp.data.jsbox != "1.0.0" ) {
+                                if ( resp.data.jsbox != version ) {
                                     $ui.toast( "有可用更新。" );
-                                    $("update").title   = "点击更新";
+                                    $("update").title   = "点击更新 >>";
                                     $("update").bgcolor = $color("#FF5252");
                                 } else {
                                     $ui.toast( "无需更新。" );
@@ -270,21 +271,112 @@ function about() {
                         });
                     }
                 }
-            }
-            /*
+            },
             {
-                type: "text",
+                type: "button",
                 props: {
-                  text: "嗨，很高兴遇见你！\n\n我叫 Kenshin，是简悦的作者，这是简悦在 iOS 上面的一次「尝试」。\n\n很感谢 JSBox 的开发者 - 钟颖为我们带来一个这么棒的工具！\n\n无论在哪个平台，简悦都将「还原一个干净的阅读空间，提升你的阅读体验。」作为一个小目标。\n\n",
-                  editable: false,
+                    title: "版本更新说明 >>",
+                    bgcolor: $color("#2196F3")
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
-                    make.top.offset( 90 );
-                    make.height.equalTo( 400 );
+                    make.top.offset( 160 );
+                    make.height.equalTo( 50 );
                 },
+                events: {
+                    tapped: function( sender ) {
+                        $app.openURL("http://ksria.com/simpread/changelog.html#jsbox_" + version );
+                    }
+                }
+            },
+            {
+                type: "button",
+                props: {
+                    title: "新手指南 >>",
+                    bgcolor: $color("#2196F3")
+                },
+                layout: function(make, view) {
+                    make.left.right.inset( 5 );
+                    make.top.offset( 220 );
+                    make.height.equalTo( 50 );
+                },
+                events: {
+                    tapped: function( sender ) {
+                        $app.openURL( "https://github.com/Kenshin/simpread/wiki/jsbox" );
+                    }
+                }
+            },
+            {
+                type: "button",
+                props: {
+                    title: "其它平台的简悦 >>",
+                    bgcolor: $color("#2196F3")
+                },
+                layout: function(make, view) {
+                    make.left.right.inset( 5 );
+                    make.top.offset( 280 );
+                    make.height.equalTo( 50 );
+                },
+                events: {
+                    tapped: function( sender ) {
+                        $app.openURL( "http://ksria.com/simpread/#downloads" );
+                    }
+                }
+            },
+            {
+                type: "button",
+                props: {
+                    title: "关于简悦 >>",
+                    bgcolor: $color("#2196F3")
+                },
+                layout: function(make, view) {
+                    make.left.right.inset( 5 );
+                    make.top.offset( 340 );
+                    make.height.equalTo( 50 );
+                },
+                events: {
+                    tapped: function( sender ) {
+                        $ui.alert({
+                            title: "嗨，很高兴遇见你！",
+                            message: "\n我叫 Kenshin，是简悦的作者，这是简悦在 iOS 上面的一次「尝试」。\n\n很感谢 JSBox 的开发者 - 钟颖为我们带来一个这么棒的工具！\n\n无论在哪个平台，都将「还原一个干净的阅读空间，提升你的阅读体验」作为简悦的小目标。\n\n",
+                        });
+                    }
+                }
+            },
+            {
+                type: "button",
+                props: {
+                    title: "我的作品 >>",
+                    bgcolor: $color("#2196F3")
+                },
+                layout: function(make, view) {
+                    make.left.right.inset( 5 );
+                    make.top.offset( 400 );
+                    make.height.equalTo( 50 );
+                },
+                events: {
+                    tapped: function( sender ) {
+                        $app.openURL( "http://kenshin.wang/project.html" );
+                    }
+                }
+            },
+            {
+                type: "button",
+                props: {
+                    title: "我的作品 >>",
+                    bgcolor: $color("#2196F3")
+                },
+                layout: function(make, view) {
+                    make.left.right.inset( 5 );
+                    make.top.offset( 460 );
+                    make.height.equalTo( 50 );
+                },
+                events: {
+                    tapped: function( sender ) {
+                        $app.openURL( "http://kenshin.wang/project.html" );
+                    }
+                }
             }
-            */
         ]
     });
 }
