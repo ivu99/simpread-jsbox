@@ -445,7 +445,7 @@ function help() {
                 },
                 events: {
                     tapped: function( sender ) {
-                        $app.openURL( "https://twitter.com/wanglei001" );
+                        $app.openURL( "twitter://user?id=wanglei001" );
                     }
                 }
             },
