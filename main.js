@@ -68,15 +68,22 @@ function open() {
  * Setting
  */
 function setting() {
-    var path = "simpread-config.json",
-        file = $file.read( path );
+    var path   = "simpread-config.json",
+        config = $file.read( path ),
+        token  = "";
+    
+    try {
+        token = JSON.parse( config.string ).secret.dropbox.access_token;
+    } catch ( errror ) {
+        $ui.alert( "请粘贴 Dropbox token 到输入框！" );
+    }
 
     $ui.render({
         views: [
             {
                 type: "label",
                 props: {
-                    text: "粘贴简悦的配置文件到下方！",
+                    text: "粘贴 Dropbox token 到下方！",
                     textColor: $color("#2196F3"),
                     align: $align.center
                 },
@@ -85,16 +92,14 @@ function setting() {
                 }
             },
             {
-                type: "text",
+                type: "input",
                 props: {
-                    id: "input",
-                    text: file == undefined ? "" : file.string
+                    text: token
                 },
                 layout: function(make, view) {
-                    make.left.inset( 5 );
-                    make.width.equalTo( view.super.width );
+                    make.left.right.inset( 5 );
                     make.top.offset( 30 );
-                    make.height.equalTo( 180 );
+                    make.height.equalTo( 50 );
                 }
             },
             {
@@ -110,16 +115,21 @@ function setting() {
                 },
                 events: {
                     tapped: function( sender ) {
-                        var token = "C3ItaGv086wAAAAAAAAC8WE6q0XMGnFoxscYu-W8uw2IMTXfZChtPznJBlgQ2tcY",
-                            data  = { path: "/simpread_config.json" };
+                        if ( $("input").text == "" ) {
+                            $ui.alert( "请确保输入框中存在 Dropbox token" );
+                            return;
+                        }
+                        $ui.loading( true );
+                        var data  = { path: "/simpread_config.json" };
                         $http.request({
                             method: "POST",
                             url: "https://content.dropboxapi.com/2/files/download",
                             header: {
-                                "Authorization"   : "Bearer " + token,
+                                "Authorization"   : "Bearer " + $("input").text,
                                 "Dropbox-API-Arg" : JSON.stringify( data ),
                             },
                             handler: function(resp) {
+                                $ui.loading( false );
                                 var data = JSON.stringify( resp.data );
                                 if ( resp.error != null ) {
                                     $ui.error( "导入发生了错误，请稍后再试！" );
@@ -129,7 +139,6 @@ function setting() {
                                     data: $data({string: data }),
                                     path: "simpread-config.json"
                                 });
-                                $("input").text = data;
                                 $ui.toast( "导入成功。" );
                             }
                         });
