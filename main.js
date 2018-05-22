@@ -106,11 +106,11 @@ function setting() {
                 type: "button",
                 props: {
                     title: "从 Dropbox 读取你的配置信息",
-                    bgcolor: $color("#1976D2")
+                    bgcolor: $color("#FF5252")
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
-                    make.top.offset( 220 );
+                    make.top.offset( 90 );
                     make.height.equalTo( 50 );
                 },
                 events: {
@@ -177,7 +177,7 @@ function setting() {
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
-                    make.top.offset( 280 );
+                    make.top.offset( 150 );
                     make.height.equalTo( 50 );
                 },
                 events: {
@@ -196,7 +196,7 @@ function setting() {
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
-                    make.top.offset( 340 );
+                    make.top.offset( 210 );
                     make.height.equalTo( 50 );
                 },
                 events: {
