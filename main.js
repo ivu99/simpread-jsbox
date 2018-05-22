@@ -240,7 +240,7 @@ function about() {
                 props: {
                     id: "update",
                     title: "检查更新 >>",
-                    bgcolor: $color("#2196F3")
+                    bgcolor: $color("#0069c0")
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
@@ -313,7 +313,7 @@ function about() {
                 type: "button",
                 props: {
                     title: "关于简悦 >>",
-                    bgcolor: $color("#2196F3")
+                    bgcolor: $color("#1976d2")
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
@@ -333,7 +333,7 @@ function about() {
                 type: "button",
                 props: {
                     title: "我的作品 >>",
-                    bgcolor: $color("#2196F3")
+                    bgcolor: $color("#8BC34A")
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
@@ -385,7 +385,7 @@ function help() {
                 props: {
                     id: "update",
                     title: "新手指南 >>",
-                    bgcolor: $color("#2196F3")
+                    bgcolor: $color("#0069c0")
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
@@ -402,7 +402,7 @@ function help() {
                 type: "button",
                 props: {
                     title: "提交问题 / 反馈 >>",
-                    bgcolor: $color("#2196F3")
+                    bgcolor: $color("#F44336")
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
@@ -436,7 +436,7 @@ function help() {
                 type: "button",
                 props: {
                     title: "在 Twitter 上关注作者 >>",
-                    bgcolor: $color("#2196F3")
+                    bgcolor: $color("#1DA1F2")
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
@@ -453,7 +453,7 @@ function help() {
                 type: "button",
                 props: {
                     title: "在 Telegram 上订阅简悦 >>",
-                    bgcolor: $color("#2196F3")
+                    bgcolor: $color("#0088CC")
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
