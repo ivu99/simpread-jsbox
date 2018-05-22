@@ -41,11 +41,11 @@ function platform() {
  */
 function setStyle(style) {
     if (userAgent() == "iphone") {
-        style.FontSize("62.5%");
+        style.FontSize("72%");
         $("sr-read").css({ "padding": "0 50px" });
         $("head").append("<style type=\"text/css\">" + theme_gothic + "</style>");
     } else {
-        style.FontSize("72%");
+        style.FontSize("75%");
         style.Layout("10%");
         $("head").append("<style type=\"text/css\">" + theme_pixyii + "</style>");
     }
