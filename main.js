@@ -250,9 +250,9 @@ function about() {
                 events: {
                     tapped: function( sender ) {
                         $ui.loading( true );
-                        if ( $("update").title == "点击更新" ) {
+                        if ( $("update").title == "点击更新 >>" ) {
                             $ui.loading( false );
-                            $app.openURL("http://ksria.com/simpread");
+                            $app.openURL("https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/simpread-" + version + ".box&name=%E7%AE%80%E6%82%A6");
                             return;
                         }
                         $http.get({
@@ -267,6 +267,7 @@ function about() {
                                     $ui.toast( "有可用更新。" );
                                     $("update").title   = "点击更新 >>";
                                     $("update").bgcolor = $color("#FF5252");
+                                    version = resp.data.jsbox;
                                 } else {
                                     $ui.toast( "无需更新。" );
                                 }
