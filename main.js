@@ -131,7 +131,7 @@ function setting() {
                             handler: function(resp) {
                                 $ui.loading( false );
                                 var data = JSON.stringify( resp.data );
-                                if ( resp.error != null ) {
+                                if ( resp.error != null || /error/i.test( data ) ) {
                                     $ui.error( "导入发生了错误，请稍后再试！" );
                                     return;
                                 }
