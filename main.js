@@ -83,7 +83,8 @@ function setting() {
             {
                 type: "label",
                 props: {
-                    text: "粘贴 Dropbox token 到下方！",
+                    text: "配置信息",
+                    font: $font(30),
                     textColor: $color("#2196F3"),
                     align: $align.center
                 },
@@ -94,11 +95,12 @@ function setting() {
             {
                 type: "input",
                 props: {
-                    text: token
+                    text: token,
+                    placeholder: "粘贴 Dropbox token 到这里！"
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
-                    make.top.offset( 30 );
+                    make.top.offset( 50 );
                     make.height.equalTo( 50 );
                 }
             },
@@ -110,7 +112,7 @@ function setting() {
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
-                    make.top.offset( 90 );
+                    make.top.offset( 110 );
                     make.height.equalTo( 50 );
                 },
                 events: {
@@ -153,7 +155,7 @@ function setting() {
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
-                    make.top.offset( 150 );
+                    make.top.offset( 170 );
                     make.height.equalTo( 50 );
                 },
                 events: {
@@ -172,7 +174,7 @@ function setting() {
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
-                    make.top.offset( 210 );
+                    make.top.offset( 230 );
                     make.height.equalTo( 50 );
                 },
                 events: {
