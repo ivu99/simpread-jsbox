@@ -145,30 +145,6 @@ function setting() {
                     }
                 }
             },
-            /*
-            {
-                type: "button",
-                props: {
-                    title: "导入到配置文件",
-                    bgcolor: $color("#FF5252")
-                },
-                layout: function(make, view) {
-                    make.left.right.inset( 5 );
-                    make.top.offset( 220 );
-                    make.height.equalTo( 50 );
-                },
-                events: {
-                    tapped: function(sender) {
-                        var config = $("input").text,
-                            file   = $file.write({
-                            data: $data({string: config }),
-                            path: path
-                        });
-                        $ui.toast( "导入成功！" );
-                    }
-                }
-            },
-            */
             {
                 type: "button",
                 props: {
@@ -217,44 +193,7 @@ function setting() {
                         });
                     }
                 }
-            },
-            /*
-            {
-                type: "button",
-                props: {
-                    title: "加载测试数据",
-                    bgcolor: $color("#1976D2")
-                },
-                layout: function(make, view) {
-                    make.left.right.inset( 5 );
-                    make.top.offset( 340 );
-                    make.height.equalTo( 50 );
-                },
-                events: {
-                    tapped: function(sender) {
-                        var config = $file.read( "scripts/config.js" ).string;
-                        $("input").text = config;
-                    }
-                }
-            },
-            {
-                type: "button",
-                props: {
-                    title: "测试配置文件",
-                    bgcolor: $color("#1976D2")
-                },
-                layout: function(make, view) {
-                    make.left.right.inset( 5 );
-                    make.top.offset( 400 );
-                    make.height.equalTo( 50 );
-                },
-                events: {
-                    tapped: function(sender) {
-                        $console.info(getConfig())
-                    }
-                }
             }
-            */
         ]
     })
 }
