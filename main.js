@@ -197,6 +197,19 @@ function setting() {
                 }
             },
             {
+                type: "label",
+                props: {
+                    text: "适配列表",
+                    font: $font(15),
+                    textColor: $color("#333333b3"),
+                    align: $align.center
+                },
+                layout: function(make, view) {
+                    make.left.right.inset( 5 );
+                    make.top.inset( 245 );
+                }
+            },
+            {
                 type: "button",
                 props: {
                     title: "手动同步适配列表",
@@ -204,7 +217,7 @@ function setting() {
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
-                    make.top.offset( 230 );
+                    make.top.offset( 280 );
                     make.height.equalTo( 50 );
                 },
                 events: {
@@ -234,7 +247,7 @@ function setting() {
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
-                    make.top.offset( 290 );
+                    make.top.offset( 340 );
                     make.height.equalTo( 50 );
                 },
                 events: {
