@@ -396,6 +396,17 @@ function about() {
                         $ui.alert({
                             title: "嗨，很高兴遇见你！",
                             message: "\n我叫 Kenshin，是简悦的作者，这是简悦在 iOS 上面的一次「尝试」。\n\n很感谢 JSBox 的开发者 - 钟颖为我们带来一个这么棒的工具！\n\n无论在哪个平台，都将「还原一个干净的阅读空间，提升你的阅读体验」作为简悦的小目标。\n\n",
+                            actions: [
+                                {
+                                    title: "请杯咖啡 ☕",
+                                    handler: function() {
+                                        $app.openURL("http://ojec5ddd5.bkt.clouddn.com/zhifu_m2.png");
+                                    }
+                                },
+                                {
+                                    title: "放弃",
+                                }
+                            ]
                         });
                     }
                 }
