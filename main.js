@@ -224,6 +224,27 @@ function setting() {
                         });
                     }
                 }
+            },
+            {
+                type: "button",
+                props: {
+                    title: "共享适配列表给「阅读器」",
+                    bgcolor: $color("#2196F3")
+                },
+                layout: function(make, view) {
+                    make.left.right.inset( 5 );
+                    make.top.offset( 290 );
+                    make.height.equalTo( 50 );
+                },
+                events: {
+                    tapped: function( sender ) {
+                        var success = $file.copy({
+                            src: "scripts/website.js",
+                            dst: "shared://simpread_website.js"
+                        });
+                        success && $ui.toast( "共享成功！" );
+                    }
+                }
             }
         ]
     })
