@@ -262,7 +262,7 @@ function setting() {
                     tapped: function( sender ) {
                         var success = $file.copy({
                             src: "scripts/website.js",
-                            dst: "shared://simpread_website.js"
+                            dst: "shared://simpread-website.js"
                         });
                         success && $ui.toast( "共享成功！" );
                     }
