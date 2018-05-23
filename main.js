@@ -113,12 +113,13 @@ function setting() {
                 type: "label",
                 props: {
                     text: "配置信息",
-                    font: $font(30),
-                    textColor: $color("#2196F3"),
+                    font: $font(15),
+                    textColor: $color("#333333b3"),
                     align: $align.center
                 },
                 layout: function(make, view) {
-                    make.left.top.right.inset( 5 );
+                    make.left.right.inset( 5 );
+                    make.top.inset( 15 );
                 }
             },
             {
@@ -136,7 +137,7 @@ function setting() {
             {
                 type: "button",
                 props: {
-                    title: "从 Dropbox 读取你的配置信息",
+                    title: "从 Dropbox 读取你的配置文件",
                     bgcolor: $color("#FF5252")
                 },
                 layout: function(make, view) {
@@ -229,7 +230,7 @@ function setting() {
                 type: "button",
                 props: {
                     title: "共享适配列表给「阅读器」",
-                    bgcolor: $color("#2196F3")
+                    bgcolor: $color("#0069c0")
                 },
                 layout: function(make, view) {
                     make.left.right.inset( 5 );
@@ -275,7 +276,7 @@ function about() {
                 props: {
                     text: "简悦 for iOS 1.0.0 测试版",
                     font: $font(13),
-                    textColor: $color("##333333b3"),
+                    textColor: $color("#333333b3"),
                     align: $align.center
                 },
                 layout: function(make, view) {
@@ -421,7 +422,7 @@ function help() {
                 props: {
                     text: "简悦 for iOS 1.0.0 测试版",
                     font: $font(13),
-                    textColor: $color("##333333b3"),
+                    textColor: $color("#333333b3"),
                     align: $align.center
                 },
                 layout: function(make, view) {
