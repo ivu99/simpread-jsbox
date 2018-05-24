@@ -270,7 +270,7 @@ function setting() {
                 events: {
                     tapped: function( sender ) {
                         $http.get({
-                            url: "http://ojec5ddd5.bkt.clouddn.com/website_list_v4.json",
+                            url: "http://ojec5ddd5.bkt.clouddn.com/website_list_v4.json?" + Math.round(+new Date()),
                             handler: function( resp ) {
                                 if ( resp.error != null ) {
                                     $ui.error( "导入发生了错误，请稍后再试！" );
