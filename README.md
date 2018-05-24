@@ -1,5 +1,29 @@
-简悦 iOS with JSBox 是什么？
----
+## 下载地址
+
+- **简悦** [下载地址](https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/simpread-1.0.0.box&name=%E7%AE%80%E6%82%A6) 
+- **简悦 · 阅读器** [下载地址](https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/simpread-reader.box&name=%E7%AE%80%E6%82%A6%20%C2%B7%20%E9%98%85%E8%AF%BB%E5%99%A8)
+
+## 配置指南
+
+- 确保已 [安装 JSBox](https://itunes.apple.com/cn/app/jsbox-%E5%88%9B%E9%80%A0%E4%BD%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%B7%A5%E5%85%B7/id1312014438?mt=8)；
+
+- 通过（上面的）地址分别下载 简悦 以及 阅读器；
+
+- 打开简悦的设定选项卡；_点击简悦右侧的 ▶ 并选择 **设定**_
+
+  ![](https://i.imgur.com/krjLlLYh.pngg)
+
+- 按照下图步骤进行配置；
+  ![](https://i.imgur.com/g1R8udFh.png)
+
+  1. 粘贴 Dropbox token 到输入框；_获取 Dropbox token 请看本文最下方 **如何获取 Dropbox token**_
+  2. 点击 **从 Dropbox 读取你的配置文件** ； _以便获取其它导出服务的token_
+  3. 点击 **同步适配列表**； _以便获取最新的适配列表_
+  4. 如果已安装「阅读器」的话，请点击 **共享适配列表给阅读器** ；_建议每次同步更新后都需要操作一次_
+
+通过上述步骤即可设置完毕，如何使用请看上面的操作视频。
+
+## 简悦 iOS with JSBox 是什么
 
 简悦 iOS （下称 简悦 ）属于 JSBox 的脚本，所以如果想要运行简悦，需要先 [安装 JSBox](https://itunes.apple.com/cn/app/jsbox-%E5%88%9B%E9%80%A0%E4%BD%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%B7%A5%E5%85%B7/id1312014438?mt=8)，关于 JSBox 是什么，请看这几篇文章：
 
@@ -7,14 +31,9 @@
 - [JSBox 有大更新，带来自定义小组件等功能](https://sspai.com/post/43935)
 - [不会写代码也能用 JSBox，我们为你整理了这些实用脚本](https://sspai.com/post/42962)
 
-## 是否收费？
+## 是否收费
 
 简悦是免费产品，但需要安装 JSBox。
-
-## 下载地址：
-
-- **简悦** [下载地址](https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/simpread-1.0.0.box&name=%E7%AE%80%E6%82%A6) 
-- **简悦 · 阅读器** [下载地址](https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/simpread-reader.box&name=%E7%AE%80%E6%82%A6%20%C2%B7%20%E9%98%85%E8%AF%BB%E5%99%A8)
 
 ## 功能介绍
 
@@ -29,7 +48,7 @@
 - 读取 Dropbox 的配置文件；（需要使用 Dropbox token ）
 - 版本升级系统；
 
-## 简悦 · 阅读器是什么？
+## 简悦 · 阅读器是什么
 
 简单点说，通过任意 App 打开 iOS 分享到 **简悦 → 打开「阅读器」** 的话，可以主动进入阅读模式；
 
@@ -46,25 +65,6 @@
 - 从任意 App 通过分享到 「打开阅读器」进入阅读模式；
 - 初始化的设定；
 - 复制 URL 后直接打开 阅读器；
-
-## 配置步骤
-
-- 确保已安装 JSBox；
-
-- 通过（上面的）地址分别下载 简悦 以及 阅读器；
-
-- 打开简悦的设定选项卡；_点击简悦右侧的 ▶ 并选择**设定**_
-
-  ![](https://i.imgur.com/krjLlLYh.pngg)
-
-- ![](https://i.imgur.com/g1R8udFh.png)
-
-  1. 粘贴 Dropbox token 到输入框；_获取 Dropbox token 请看[这里](xxx)_
-  2. 点击 **从 Dropbox 读取你的配置文件** ； _以便获取其它导出服务的token_
-  3. 点击 **同步适配列表**； _以便获取最新的适配列表_
-  4. 如果已安装「阅读器」的话，请点击 **共享适配列表给阅读器** ；_建议每次同步更新后都需要操作一次_
-
-通过上述步骤即可设置完毕，如何使用请看上面的操作视频。
 
 ## 下一步
 
@@ -85,10 +85,7 @@
 - 如果你只是偶尔使用 Safari 的话，自带的阅读模式有可能够用；
 - 如果你有在 iPad 作为生产力工具的话，简悦则是你最好的选择（之一）
 
-
 ***
-
-
 
 ## 与 Safari 自带的阅读模式区别
 
