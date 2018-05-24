@@ -5,17 +5,24 @@ var version = "1.0.0",
 /**
  * Enter
  */
-$ui.menu({
-    items: [ "阅读模式", "打开到「阅读器」", "设定", "帮助 & 支持", "关于" ],
-    handler: function(title, idx) {
-        if      ( idx == 0 ) readMode();
-        else if ( idx == 1 ) open();
-        else if ( idx == 2 ) setting();
-        else if ( idx == 3 ) help();
-        else about();
-    }
-});
+menubar()
 welcome();
+
+/**
+ * Menu
+ */
+function menubar() {
+    $ui.menu({
+        items: [ "阅读模式", "打开到「阅读器」", "设定", "帮助 & 支持", "关于" ],
+        handler: function(title, idx) {
+            if      ( idx == 0 ) readMode();
+            else if ( idx == 1 ) open();
+            else if ( idx == 2 ) setting();
+            else if ( idx == 3 ) help();
+            else about();
+        }
+    });
+}
 
 /**
  * Welcome
