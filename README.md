@@ -11,17 +11,17 @@
 
 - 打开简悦的设定选项卡；_点击简悦右侧的 ▶ 并选择 **设定**_
 
-  ![](https://i.imgur.com/krjLlLYh.pngg)
+  ![](https://i.imgur.com/EsyO9lDl.pngg)
 
 - 按照下图步骤进行配置；
-  ![](https://i.imgur.com/g1R8udFh.png)
+  ![](https://i.imgur.com/INY5Gj6l.png)
 
   1. 粘贴 Dropbox token 到输入框；_获取 Dropbox token 请看本文最下方 **如何获取 Dropbox token**_
   2. 点击 **从 Dropbox 读取你的配置文件** ； _以便获取其它导出服务的token_
   3. 点击 **同步适配列表**； _以便获取最新的适配列表_
   4. 如果已安装「阅读器」的话，请点击 **共享适配列表给阅读器** ；_建议每次同步更新后都需要操作一次_
 
-通过上述步骤即可设置完毕，如何使用请看上面的操作视频。
+通过上述步骤即可设置完毕，如何使用请看下方的操作视频。
 
 ## 简悦 iOS with JSBox 是什么
 
@@ -61,9 +61,10 @@
 
 ## 操作视频
 
+- 初始化设定 [动图](https://i.imgur.com/SP15ylch.gif) [视频](http://ojec5ddd5.bkt.clouddn.com/setting@jsbox.mov)；
+- 安装简悦 · 阅读器；
 - 从 Safari 进入阅读模式；
 - 从任意 App 通过分享到 「打开阅读器」进入阅读模式；
-- 初始化的设定；
 - 复制 URL 后直接打开 阅读器；
 
 ## 下一步
@@ -101,3 +102,13 @@
 - 打开 选项 → 高级设定 → 授权管理 _请授权你常用的服务，目前 iOS 版仅支持：Pocket / Evernote / 印象笔记 / Dropbox_
 - 打开 选项 → 共通 → 导出配置文件到本地；
 - 同任意文本编辑器打开的导出文件，搜索 `dropbox` 复制对应的 `access_token` 即可；
+
+## 触发器脚本
+
+> JSBox 带有一个叫做 **触发器脚本** 的功能，简单的说就是当通过 点击 ![Imgur](https://i.imgur.com/yeskA2tm.jpg) 分享时自动弹出菜单，具体的设置如下：
+
+![Imgur](https://i.imgur.com/37vkidgh.png)
+
+## 更多设置
+
+#### 更详细的说明请前往 [帮助文档](https://github.com/Kenshin/simpread/wiki/jsbox)
