@@ -9,8 +9,8 @@
   },
   "info" : {
     "version" : "1.0.0",
-    "author" : "Kenshin",
-    "types" : 15,
+    "author" : "Kenshin <kenshin@ksria.com>",
+    "types" : 5,
     "website" : "http://ksria.com/simpread",
     "name" : "简悦",
     "url" : ""
