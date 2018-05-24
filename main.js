@@ -70,7 +70,7 @@ function open() {
                 {
                     title: "安装",
                     handler: function() {
-                        $app.openURL("https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-reader.box&name=%E7%AE%80%E6%82%A6%20%C2%B7%20%E9%98%85%E8%AF%BB%E5%99%A8");
+                        $app.openURL("https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-reader.box?" + Math.round(+new Date()) + "&name=%E7%AE%80%E6%82%A6%20%C2%B7%20%E9%98%85%E8%AF%BB%E5%99%A8");
                     }
                 },
                 {
@@ -322,7 +322,7 @@ function about() {
                         $ui.loading( true );
                         if ( $("update").title == "点击更新 >>" ) {
                             $ui.loading( false );
-                            $app.openURL("https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-" + version + ".box&name=%E7%AE%80%E6%82%A6");
+                            $app.openURL("https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-" + version + ".box?" + Math.round(+new Date()) + "&name=%E7%AE%80%E6%82%A6");
                             return;
                         }
                         $http.get({
