@@ -117,34 +117,8 @@ function readMode() {
  * Open link to SimpRead reader
  */
 function open() {
-    var names  = [ "simpread-reader", "简悦 · 阅读器" ],
-        addins = $addin.list,
-        name   = "",
-        link   = $context.link;
 
-    Object.keys( addins ).forEach( function( idx ) {
-        if ( names.includes( addins[idx].name )) {
-            name = addins[idx].name;
-        }
-    });
-
-    if ( name == "" ) {
-        $ui.alert({
-            message: "检测到当前环境并没有安装简悦的阅读器，是否安装？",
-            actions: [
-                {
-                    title: "安装",
-                    handler: function() {
-                        $app.openURL("https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-reader.box?" + Math.round(+new Date()) + "&name=%E7%AE%80%E6%82%A6%20%C2%B7%20%E9%98%85%E8%AF%BB%E5%99%A8");
-                    }
-                },
-                {
-                    title: "放弃",
-                }
-            ]
-        });
-        return;
-    }
+    if ( !existReader() ) return;
 
     if ( /http(s)?:\/\//.test( link )) {
         var success = $file.copy({
@@ -322,6 +296,7 @@ function setting() {
                             dst: "shared://simpread-website.js"
                         });
                         success && $ui.toast( "共享成功！" );
+                        existReader();
                     }
                 }
             }
@@ -604,4 +579,42 @@ function help() {
             }
         ]
     });
+}
+
+/**
+ * Exist reader
+ * 
+ * @return {boolen} true: exist; false: not exist
+ */
+function existReader() {
+    var names  = [ "simpread-reader", "简悦 · 阅读器" ],
+        addins = $addin.list,
+        name   = "",
+        link   = $context.link;
+
+    Object.keys( addins ).forEach( function( idx ) {
+        if ( names.includes( addins[idx].name )) {
+            name = addins[idx].name;
+        }
+    });
+
+    if ( name == "" ) {
+        $ui.alert({
+            message: "检测到当前环境并没有安装简悦的阅读器，是否安装？",
+            actions: [
+                {
+                    title: "马上安装",
+                    handler: function() {
+                        $app.openURL("https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-reader.box?" + Math.round(+new Date()) + "&name=%E7%AE%80%E6%82%A6%20%C2%B7%20%E9%98%85%E8%AF%BB%E5%99%A8");
+                    }
+                },
+                {
+                    title: "暂不安装",
+                }
+            ]
+        });
+        return false;
+    }
+    return true;
+
 }
