@@ -154,14 +154,8 @@ function open() {
                 src: "simpread-config.json",
                 dst: "shared://simpread-config.json"
             });
-            if ( success ) {
-                setTimeout( function(){
-                    $app.openURL( "jsbox://run?name=" + encodeURIComponent(name) + "&url=" + link );
-                    $context.close();
-                }, 100 );
-            } else {
-                $ui.alert( "当前不存在配置文件，请在设定中重新获取。" );
-            }
+            $app.openURL( "jsbox://run?name=" + encodeURIComponent(name) + "&url=" + link );
+            $context.close();
         }
     } else {
         $ui.alert( "当前 URL 非法，请确保正确的 URL。" );
