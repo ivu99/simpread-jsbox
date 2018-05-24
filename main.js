@@ -129,8 +129,10 @@ function open() {
                 dst: "shared://simpread-config.json"
             });
             if ( success ) {
-                $app.openURL( "jsbox://run?name=" + encodeURIComponent(name) + "&url=" + link );
-                $context.close();
+                setTimeout( function(){
+                    $app.openURL( "jsbox://run?name=" + encodeURIComponent(name) + "&url=" + link );
+                    $context.close();
+                }, 100 );
             } else {
                 $ui.alert( "当前不存在配置文件，请在设定中重新获取。" );
             }
