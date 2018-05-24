@@ -153,8 +153,8 @@ function open() {
         });
         $app.openURL( "jsbox://run?name=" + encodeURIComponent(name) + "&url=" + link );
         $context.close();
-} else {
-        $ui.alert( "当前 URL 非法，请确保正确的 URL。" );
+    } else {
+            $ui.alert( "当前 URL 非法，请确保正确的 URL。" );
     }
 }
 
