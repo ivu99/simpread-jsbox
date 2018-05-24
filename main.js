@@ -37,7 +37,7 @@ function welcome() {
                 {
                     title: "配置指南",
                     handler: function() {
-                        $app.openURL( "https://github.com/Kenshin/simpread/wiki/jsbox#%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4" );
+                        readme();
                     }
                 },
                 {
@@ -50,6 +50,24 @@ function welcome() {
             path: "version.json"
         });
     }
+}
+
+/**
+ * Read me
+ */
+function readme() {
+    var md = $file.read( "README.md" ).string;
+    $ui.render({
+        views: [
+          {
+            type: "markdown",
+            props: {
+              content: md,
+            },
+            layout: $layout.fill
+          }
+        ]
+      })
 }
 
 /**
