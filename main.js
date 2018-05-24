@@ -505,7 +505,7 @@ function help() {
                 },
                 events: {
                     tapped: function( sender ) {
-                        $app.openURL( "https://github.com/Kenshin/simpread/wiki/jsbox" );
+                        readme();
                     }
                 }
             },

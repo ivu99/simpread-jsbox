@@ -11,7 +11,7 @@
 
 - 打开简悦的设定选项卡；_点击简悦右侧的 ▶ 并选择 **设定**_
 
-  ![](https://i.imgur.com/EsyO9lDl.pngg)
+  ![](https://i.imgur.com/EsyO9lDl.png)
 
 - 按照下图步骤进行配置；
   ![](https://i.imgur.com/INY5Gj6l.png)
