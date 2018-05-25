@@ -24,7 +24,7 @@
 
 简悦 iOS （下称 简悦 ）属于 JSBox 的脚本，所以如果想要运行简悦，需要先 [安装 JSBox](https://itunes.apple.com/cn/app/jsbox-%E5%88%9B%E9%80%A0%E4%BD%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%B7%A5%E5%85%B7/id1312014438?mt=8)，关于 JSBox 是什么，请看这几篇文章：
 
-- [JSBox: 一个创造工具的工具](https://sspai.com/post/4236)
+- [JSBox: 一个创造工具的工具](https://sspai.com/post/42361)
 - [JSBox 有大更新，带来自定义小组件等功能](https://sspai.com/post/43935)
 - [不会写代码也能用 JSBox，我们为你整理了这些实用脚本](https://sspai.com/post/42962)
 
@@ -58,11 +58,11 @@
 
 ## 操作视频
 
-- 初始化设定 [动图](https://i.imgur.com/SP15ylch.gif) [视频](http://ojec5ddd5.bkt.clouddn.com/setting@jsbox.mov)；
-- 安装简悦 · 阅读器；
-- 从 Safari 进入阅读模式；
-- 从任意 App 通过分享到 「打开阅读器」进入阅读模式；
-- 复制 URL 后直接打开 阅读器；
+- 初始化设定 [动图](https://i.imgur.com/oTD6Q7F.gif) [视频](http://ojec5ddd5.bkt.clouddn.com/setting@jsbox.mov)
+- 安装简悦 · 阅读器 [动图](https://i.imgur.com/2qRdMJZ.gif) [视频](http://ojec5ddd5.bkt.clouddn.com/reader@jsbox.mov)
+- 从 Safari 进入阅读模式 [动图](https://i.imgur.com/6xsd4dZ.gif) [视频](http://ojec5ddd5.bkt.clouddn.com/share%20to%20safari@jsbox.mov)
+- 从任意 App 通过分享到 「打开阅读器」进入阅读模式 [动图](https://i.imgur.com/rShmzQu.gif) [视频](http://ojec5ddd5.bkt.clouddn.com/share%20to%20reader@jsbox.mov)
+- 复制 URL 后直接打开 阅读器 [动图](https://i.imgur.com/qRKLCr0.gif) [视频](http://ojec5ddd5.bkt.clouddn.com/clipboard%20to%20reader@jsbox.mov)
 
 ## 下一步
 
