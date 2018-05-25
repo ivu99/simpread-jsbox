@@ -1,5 +1,6 @@
 
 var version = "1.0.0",
+    reader  = "",
     logo    = "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";
 
 initialize();
@@ -142,7 +143,7 @@ function open() {
             src: "simpread-config.json",
             dst: "shared://simpread-config.json"
         });
-        $app.openURL( "jsbox://run?name=" + encodeURIComponent(name) + "&url=" + link );
+        $app.openURL( "jsbox://run?name=" + encodeURIComponent(reader) + "&url=" + link );
         $context.close();
     } else {
         $ui.alert( "当前 URL 非法，请确保正确的 URL。" );
@@ -605,16 +606,15 @@ function help() {
  */
 function existReader() {
     var names  = [ "simpread-reader", "简悦 · 阅读器" ],
-        addins = $addin.list,
-        name   = "";
+        addins = $addin.list;
 
     Object.keys( addins ).forEach( function( idx ) {
         if ( names.includes( addins[idx].name )) {
-            name = addins[idx].name;
+            reader = addins[idx].name;
         }
     });
 
-    if ( name == "" ) {
+    if ( reader == "" ) {
         $ui.alert({
             message: "检测到当前环境并没有安装简悦的阅读器，是否安装？",
             actions: [
