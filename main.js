@@ -135,9 +135,8 @@ function readMode() {
  * Open link to SimpRead reader
  */
 function open() {
-
+    var link   = $context.link;
     if ( !existReader() ) return;
-
     if ( /http(s)?:\/\//.test( link )) {
         var success = $file.copy({
             src: "simpread-config.json",
@@ -607,8 +606,7 @@ function help() {
 function existReader() {
     var names  = [ "simpread-reader", "简悦 · 阅读器" ],
         addins = $addin.list,
-        name   = "",
-        link   = $context.link;
+        name   = "";
 
     Object.keys( addins ).forEach( function( idx ) {
         if ( names.includes( addins[idx].name )) {
