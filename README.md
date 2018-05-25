@@ -1,13 +1,10 @@
-## 下载地址
+## 官网
 
-- **简悦** [下载地址](https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/simpread-1.0.0.box&name=%E7%AE%80%E6%82%A6) 
-- **简悦 · 阅读器** [下载地址](https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/simpread-reader.box&name=%E7%AE%80%E6%82%A6%20%C2%B7%20%E9%98%85%E8%AF%BB%E5%99%A8)
+- <http://ksria.com/simpread>
 
 ## 配置指南
 
 - 确保已 [安装 JSBox](https://itunes.apple.com/cn/app/jsbox-%E5%88%9B%E9%80%A0%E4%BD%A0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%B7%A5%E5%85%B7/id1312014438?mt=8)；
-
-- 通过（上面的）地址分别下载 简悦 以及 阅读器；
 
 - 打开简悦的设定选项卡；_点击简悦右侧的 ▶ 并选择 **设定**_
 
@@ -108,7 +105,3 @@
 > JSBox 带有一个叫做 **触发器脚本** 的功能，简单的说就是当通过 点击 ![Imgur](https://i.imgur.com/yeskA2tm.jpg) 分享时自动弹出菜单，具体的设置如下：
 
 ![Imgur](https://i.imgur.com/37vkidgh.png)
-
-## 更多设置
-
-#### 更详细的说明请前往 [帮助文档](https://github.com/Kenshin/simpread/wiki/jsbox)

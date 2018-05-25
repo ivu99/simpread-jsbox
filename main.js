@@ -73,6 +73,23 @@ function readme() {
               content: md,
             },
             layout: $layout.fill
+          },
+          {
+            type: "button",
+            props: {
+                title: "更详细的说明请前往 帮助文档 >>",
+                bgcolor: $color("#FF5252"),
+                align: $align.center
+            },
+            layout: function(make) {
+                make.left.bottom.right.equalTo(0)
+                make.height.equalTo(44)
+            },
+            events: {
+                tapped: function(sender) {
+                    $app.openURL( "https://github.com/Kenshin/simpread/wiki/jsbox" );
+                }
+            }
           }
         ]
       })
