@@ -110,6 +110,7 @@ function inject() {
  * Read mode
  */
 function readMode() {
+    if ( !existSafari() ) return;
     $safari.inject( inject() );
 }
 
@@ -616,5 +617,21 @@ function existReader() {
         return false;
     }
     return true;
+}
 
+/**
+ * Exist safari
+ * 
+ * @return {boolean} true: exist; false: not exist
+ */
+function existSafari() {
+    if ( $app.env != $env.safari ) {
+        $ui.alert({
+            title: "操作提示",
+            message: "请在 Safari 的分享面板中使用。",
+            
+        });
+        return false;
+    }
+    return true;
 }
