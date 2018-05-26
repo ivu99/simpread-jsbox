@@ -1,3 +1,21 @@
+<p align="center"><img src="http://ojec5ddd5.bkt.clouddn.com/logo%20bigger.png" /></p>
+<h1 align="center">简悦 - SimpRead</h1>
+<p align="center">让你瞬间进入沉浸式阅读的扩展，还原阅读的本质，提升你的阅读体验。</p>
+<p align="center">为了达到完美的阅读模式这个小目标 ，我适配了 <a target="_blank" href="https://github.com/kenshin/simpread/wiki/适配站点列表">240+</a> 个网站，因此诞生了简悦。</p>
+<p align="center">
+   <a href="https://github.com/kenshin/simpread/releases"><img src="https://img.shields.io/badge/lastest_version-1.1.0-blue.svg"></a>
+   <a target="_blank" href="http://ksria.com/simpread"><img src="https://img.shields.io/badge/website-_simpread.ksria.com-1DBA90.svg"></a>
+</p>
+<p align="center">
+   <a target="_blank" href="https://chrome.google.com/webstore/detail/%E7%AE%80%E6%82%A6-simpread/ijllcpnolfcooahcekpamkbidhejabll"><img src="https://img.shields.io/badge/download-_chrome_webstore-brightgreen.svg"></a>
+   <a href="http://ksria.com/simpread/crx/1.1.0/simpread.crx"><img src="https://img.shields.io/badge/download-_crx-brightgreen.svg"></a>
+   <a target="_blank" href="https://addons.mozilla.org/zh-CN/firefox/addon/simpread"><img src="https://img.shields.io/badge/download-_firefox_addon-DD512A.svg"></a>
+   <a target="_blank" href="https://greasyfork.org/zh-CN/scripts/39998"><img src="https://i.imgur.com/JFhxHeR.png"></a>
+   <a target="_blank" href="https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-1.0.0.box?201805251238&name=%E7%AE%80%E6%82%A6"><img src="https://i.imgur.com/zZeOllB.png"></a>
+</p>
+
+***
+
 ![Imgur](http://ojec5ddd5.bkt.clouddn.com/cover@jsbox.png)
 
 ## 官网
