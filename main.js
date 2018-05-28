@@ -171,6 +171,10 @@ function open() {
             src: "simpread-config.json",
             dst: "shared://simpread-config.json"
         });
+        var success = $file.write({
+            data: $data({string: link }),
+            path: "shared://simpread-link.txt"
+        });
         $app.openURL( "jsbox://run?name=" + encodeURIComponent(reader) + "&url=" + link );
         $context.close();
     } else {
