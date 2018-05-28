@@ -42,7 +42,6 @@ function setStyle(style) {
     $("head").append("<style type=\"text/css\">" + theme_pixyii + "</style>");
     if (userAgent() == "iphone") {
         style.FontSize("72%");
-        //$("sr-read").css({ "padding": "0 50px" });
         //$("head").append("<style type=\"text/css\">" + theme_gothic + "</style>");
         $("head").append("<style type=\"text/css\">" + theme_mobile + "</style>");
     } else {
