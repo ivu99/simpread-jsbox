@@ -39,14 +39,16 @@ function platform() {
  * @param {object} puplugin.Plugin( "style" )
  */
 function setStyle(style) {
+    $("head").append("<style type=\"text/css\">" + theme_pixyii + "</style>");
     if (userAgent() == "iphone") {
         style.FontSize("72%");
         //$("sr-read").css({ "padding": "0 50px" });
-        $("head").append("<style type=\"text/css\">" + theme_gothic + "</style>");
+        //$("head").append("<style type=\"text/css\">" + theme_gothic + "</style>");
+        $("head").append("<style type=\"text/css\">" + theme_mobile + "</style>");
     } else {
         style.FontSize("75%");
         style.Layout("10%");
-        $("head").append("<style type=\"text/css\">" + theme_pixyii + "</style>");
+        //$("head").append("<style type=\"text/css\">" + theme_pixyii + "</style>");
     }
 
     var maxWidth = $(document).width(),
