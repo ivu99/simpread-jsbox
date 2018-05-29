@@ -76,7 +76,7 @@ function welcome() {
             {
                 title: "配置指南",
                 handler: function() {
-                    readme();
+                    readme( "GETSTARTED.md" );
                 }
             },
             {
@@ -91,9 +91,11 @@ function welcome() {
 
 /**
  * Read me
+ * 
+ * @param {string} name include: README.md | GETSTARTED.md
  */
-function readme() {
-    var md = $file.read( "README.md" ).string;
+function readme( name ) {
+    var md = $file.read( name ).string;
     $ui.render({
         views: [
           {
@@ -116,7 +118,7 @@ function readme() {
             },
             events: {
                 tapped: function(sender) {
-                    $app.openURL( "https://github.com/Kenshin/simpread/wiki/jsbox" );
+                    name == "README.md" ? $app.openURL( "https://github.com/Kenshin/simpread/wiki/jsbox" ) : readme( "README.md" );
                 }
             }
           }
@@ -555,7 +557,7 @@ function help() {
                 },
                 events: {
                     tapped: function( sender ) {
-                        readme();
+                        readme( "README.md" );
                     }
                 }
             },
