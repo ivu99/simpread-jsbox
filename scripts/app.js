@@ -245,8 +245,12 @@ function service() {
             notify.complete();
             var _mdService2 = new TurndownService(),
                 _data2 = _mdService2.turndown(clearMD($("sr-rd-content").html()));
-            $notify && $notify( "clipboard", { string: _data2 });
-            new Notify().Render("已成功复制到剪切板！");
+            try {
+                $notify && $notify( "clipboard", { string: _data2 });
+                new Notify().Render("已成功复制到剪切板！");
+            } catch ( error ) {
+                new Notify().Render( "此功能只能在「阅读器」中使用。" );
+            }
         }
     };
     simpread_config.secret && simpread_config.secret.pocket   && $("sr-rd-crlbar fab.pocket").click(clickEvent)   && $("sr-rd-crlbar fab.pocket").css({ opacity: 1, "background-color": "rgb(3, 169, 244)" });
