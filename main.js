@@ -7,6 +7,7 @@ var version = "1.0.0",
  * Enter
  */
 if ( !firstload() ) return;
+if ( update() )     return;
 if ( $app.env == $env.action ) {
     open();
 } else if ( $app.env == $env.safari ) {
@@ -90,6 +91,44 @@ function welcome() {
 }
 
 /**
+ * Update
+ * 
+ * @return {boolean} true: open CHANGELOG.md; false: not update
+ */
+function update() {
+    var file     = $file.read( "version.json" ),
+        versions = {
+            "1.0.1": "增加了「识别当前环境，自动进入阅读模式」、复制 Markdown 到剪切板（只限阅读器）等功能"
+        };
+    if ( version != JSON.parse( file.string ).version ) {
+        var success = $file.write({
+            data: $data({string: JSON.stringify({"version":version})}),
+            path: "version.json"
+        });
+        $ui.alert({
+            title: "简悦已升级到最新版",
+            message: "\n感谢使用简悦！\n本次更新包括：" + versions[version],
+            actions: [
+                {
+                    title: "更新日志",
+                    handler: function() {
+                        readme( "CHANGELOG.md" );
+                    }
+                },
+                {
+                    title: "继续操作",
+                    handler: function() {
+                        menubar();
+                    }
+                }
+            ]
+        });
+        return true;
+    }
+    return false;
+}
+
+/**
  * Read me
  * 
  * @param {string} name include: README.md | GETSTARTED.md
@@ -118,7 +157,7 @@ function readme( name ) {
             },
             events: {
                 tapped: function(sender) {
-                    name == "README.md" ? $app.openURL( "https://github.com/Kenshin/simpread/wiki/jsbox" ) : readme( "README.md" );
+                    name == "GETSTARTED.md" ? readme( "README.md" ) : $app.openURL( "https://github.com/Kenshin/simpread/wiki/jsbox" );
                 }
             }
           }
