@@ -23,8 +23,9 @@ function inject() {
     var vernder = $file.read( "scripts/vender.js"  ).string,
         css     = $file.read( "scripts/css.js"     ).string,
         website = $file.read( "scripts/website.js" ).string,
+        analytic= $file.read( "scripts/analytic.js").string,
         app     = $file.read( "scripts/app.js"     ).string;
-    return vernder + css + website + getConfig() + app;
+    return vernder + css + website + getConfig() + app + analytic;
 }
 
 /**
@@ -55,6 +56,18 @@ function readConfig() {
 }
 
 /**
+ * Read shared link
+ */
+function readURL() {
+    var exist = $file.exists( "shared://simpread-link.txt" );
+    if ( exist ) {
+        var file = $file.read( "shared://simpread-link.txt" );
+        url = file.string;
+        $file.delete( "shared://simpread-link.txt" );
+    }
+}
+
+/**
  * Enter
  */
 readShared();
@@ -73,6 +86,7 @@ if ( query.url == undefined ) {
 } else url = query.url;
 
 if ( url ) {
+    readURL();
     $ui.render({
         views: [
           {
@@ -86,6 +100,10 @@ if ( url ) {
                 open: function( result ) {
                     $console.info( result )
                     $app.openURL( result.url )
+                },
+                clipboard: function( result ) {
+                    $console.info( result )
+                    $clipboard.text = result.string;
                 }
               }
           }
