@@ -189,8 +189,9 @@ function inject() {
     var vernder = $file.read( "scripts/vender.js"  ).string,
         css     = $file.read( "scripts/css.js"     ).string,
         website = $file.read( "scripts/website.js" ).string,
+        analytic= $file.read( "scripts/analytic.js").string,
         app     = $file.read( "scripts/app.js"     ).string;
-    return vernder + css + website + getConfig() + app;
+    return vernder + css + website + getConfig() + app + analytic;
 }
 
 /**
