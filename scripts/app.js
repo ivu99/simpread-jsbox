@@ -167,16 +167,20 @@ function service() {
             token = simpread_config.secret && simpread_config.secret[type] ? simpread_config.secret[type].access_token : "",
             notify = new Notify().Render({ state: "loading", content: "保存中，请稍后！" }),
             success = function success(result, textStatus, jqXHR) {
-            console.log(result, textStatus, jqXHR);
-            notify.complete();
-            if (result.code == 200) {
-                new Notify().Render("保存成功！");
-            } else new Notify().Render("保存失败，请稍候再试！");
-        },
+                console.log(result, textStatus, jqXHR);
+                notify.complete();
+                if (result.code == 200) {
+                    new Notify().Render("保存成功！");
+                } else new Notify().Render("保存失败，请稍候再试！");
+            },
             failed = function failed(jqXHR, textStatus, error) {
-            console.error(jqXHR, textStatus, error);
-            notify.complete();
-            new Notify().Render("保存失败，请稍候再试！");
+                console.error(jqXHR, textStatus, error);
+                notify.complete();
+                new Notify().Render("保存失败，请稍候再试！");
+            },
+            markdown = function markdown() {
+                var mdService = new TurndownService();
+                return mdService.turndown(clearMD($("sr-rd-content").html()));
         };
         if (type == "pocket") {
             $.ajax({
@@ -202,8 +206,7 @@ function service() {
                 }
             }).done(success).fail(failed);
         } else if ( type == "dropbox" ) {
-            const mdService = new TurndownService(),
-                  data      = mdService.turndown( clearMD( $("sr-rd-content").html() )),
+            const data      = markdown(),
                   path      = "md/",
                   name      = pr.html.title + ".md",
                   safename  = data => data.replace( /\//ig, "" ),
@@ -228,8 +231,7 @@ function service() {
                 contentType : false
             }).done( ( data, textStatus, jqXHR ) => success( {code:200, data}, textStatus, jqXHR )).fail( failed );
         } else if ( type == "bear" || type == "drafts" ) {
-            var _mdService = new TurndownService(),
-                _data = _mdService.turndown(clearMD($("sr-rd-content").html())),
+            var _data = markdown(),
                 title = encodeURIComponent(pr.html.title),
                 text = encodeURIComponent(_data),
                 bear = "bear://x-callback-url/create?title=" + title + "&text=" + text + "&tags=simpread",
@@ -243,8 +245,7 @@ function service() {
             }, 2000);
         } else if (type == "markdown") {
             notify.complete();
-            var _mdService2 = new TurndownService(),
-                _data2 = _mdService2.turndown(clearMD($("sr-rd-content").html()));
+            var _data2 = markdown();
             try {
                 $notify && $notify( "clipboard", { string: _data2 });
                 new Notify().Render("已成功复制到剪切板！");
