@@ -1,4 +1,6 @@
 
+$( "iframe" ).remove(); // hacd code
+
 var pr = new PureRead();
 pr.Addsites(website_list);
 pr.AddPlugin(puplugin.Plugin());
