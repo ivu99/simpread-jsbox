@@ -42,12 +42,10 @@ function setStyle(style) {
     $("head").append("<style type=\"text/css\">" + theme_pixyii + "</style>");
     if (userAgent() == "iphone") {
         style.FontSize("72%");
-        //$("head").append("<style type=\"text/css\">" + theme_gothic + "</style>");
-        $("head").append("<style type=\"text/css\">" + theme_mobile + "</style>");
+        $("head").append("<style type=\"text/css\">" + mobile_style + "</style>");
     } else {
         style.FontSize("75%");
         style.Layout("10%");
-        //$("head").append("<style type=\"text/css\">" + theme_pixyii + "</style>");
     }
 
     var maxWidth = $(document).width(),
