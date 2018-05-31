@@ -11,7 +11,7 @@
    <a href="http://ksria.com/simpread/crx/1.1.0/simpread.crx"><img src="https://img.shields.io/badge/download-_crx-brightgreen.svg"></a>
    <a target="_blank" href="https://addons.mozilla.org/zh-CN/firefox/addon/simpread"><img src="https://img.shields.io/badge/download-_firefox_addon-DD512A.svg"></a>
    <a target="_blank" href="https://greasyfork.org/zh-CN/scripts/39998"><img src="https://i.imgur.com/JFhxHeR.png"></a>
-   <a target="_blank" href="https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-1.0.0.box?201805251238&name=%E7%AE%80%E6%82%A6"><img src="https://i.imgur.com/zZeOllB.png"></a>
+   <a target="_blank" href="https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-1.0.1.box?20180531210&name=%E7%AE%80%E6%82%A6"><img src="https://i.imgur.com/zZeOllB.png"></a>
 </p>
 
 ***
@@ -24,7 +24,7 @@
 
 ## 下载地址
 
-- **简悦** [下载地址](https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-1.0.1.box?20180531200&name=%E7%AE%80%E6%82%A6) 
+- **简悦** [下载地址](https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-1.0.1.box?20180531210&name=%E7%AE%80%E6%82%A6) 
 - **简悦 · 阅读器** [下载地址](https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-reader-1.0.1.box?20180531200&name=%E7%AE%80%E6%82%A6%20%C2%B7%20%E9%98%85%E8%AF%BB%E5%99%A8)
 
 ## 简悦 iOS with JSBox 是什么
@@ -51,7 +51,7 @@
 - 导出 MD 到 剪切板；
 - 同步适配列表；
 - 读取 Dropbox 的配置文件；（需要使用 Dropbox token ）
-- 版本升级系统；
+- 版本升级系统；  
 -「自动感知当前环境，自动进入阅读模式」；（需要设定「触发器脚本」，详细 [请看这里](https://github.com/Kenshin/simpread/wiki/JSBox#%E8%A7%A6%E5%8F%91%E5%99%A8%E8%84%9A%E6%9C%AC)
 
 ## 简悦 · 阅读器是什么
