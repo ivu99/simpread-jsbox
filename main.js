@@ -447,7 +447,7 @@ function about() {
                             return;
                         }
                         $http.get({
-                            url: "http://ojec5ddd5.bkt.clouddn.com/versions.json",
+                            url: "http://ojec5ddd5.bkt.clouddn.com/versions.json?" + Math.round(+new Date()),
                             handler: function( resp ) {
                                 $ui.loading( false );
                                 if ( resp.error != null ) {
