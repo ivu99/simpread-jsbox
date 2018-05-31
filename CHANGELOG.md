@@ -2,7 +2,7 @@
 
 ## 1.0.1 版的功能：
 
-> 注意：阅读器也需要更新，[点击这里](https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-reader.box?201805291533&name=%E7%AE%80%E6%82%A6%20%C2%B7%20%E9%98%85%E8%AF%BB%E5%99%A8) 进行更新；
+> 注意：阅读器也需要更新，[点击这里](https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/simpread-reader-1.0.1.box?20180531200&name=%E7%AE%80%E6%82%A6%20%C2%B7%20%E9%98%85%E8%AF%BB%E5%99%A8) 进行更新；
 
 - **增加** 「自动感知当前环境，自动进入阅读模式」功能；
 - **增加**「复制 Markdown 到剪切板」功能；

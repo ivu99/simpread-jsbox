@@ -107,7 +107,7 @@ function update() {
         });
         $ui.alert({
             title: "简悦已升级到最新版",
-            message: "\n感谢使用简悦！\n本次更新包括：" + versions[version],
+            message: "\n本次更新包括：" + versions[version],
             actions: [
                 {
                     title: "更新日志",
@@ -695,7 +695,7 @@ function existReader() {
                 {
                     title: "马上安装",
                     handler: function() {
-                        $app.openURL("https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-reader.box?" + Math.round(+new Date()) + "&name=%E7%AE%80%E6%82%A6%20%C2%B7%20%E9%98%85%E8%AF%BB%E5%99%A8");
+                        $app.openURL("https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-reader-" + version + ".box?" + Math.round(+new Date()) + "&name=%E7%AE%80%E6%82%A6%20%C2%B7%20%E9%98%85%E8%AF%BB%E5%99%A8");
                     }
                 },
                 {
