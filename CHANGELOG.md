@@ -4,7 +4,7 @@
 
 > 注意：阅读器也需要更新，[点击这里](https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/simpread-reader-1.0.1.box?20180531200&name=%E7%AE%80%E6%82%A6%20%C2%B7%20%E9%98%85%E8%AF%BB%E5%99%A8) 进行更新；
 
-- **增加** 「自动感知当前环境，自动进入阅读模式」功能；
+- **增加** 「自动感知当前环境，自动进入阅读模式」功能；（需要设定「触发器脚本」，详细 [请看这里](https://github.com/Kenshin/simpread/wiki/JSBox#%E8%A7%A6%E5%8F%91%E5%99%A8%E8%84%9A%E6%9C%AC)
 - **增加**「复制 Markdown 到剪切板」功能；
 
 - **修复** 微信使用「打开阅读器」错误的问题；
