@@ -480,7 +480,7 @@ function about() {
                 },
                 events: {
                     tapped: function( sender ) {
-                        $app.openURL("http://ksria.com/simpread/changelog.html#jsbox_" + version );
+                        readme( "CHANGELOG.md" );
                     }
                 }
             },
