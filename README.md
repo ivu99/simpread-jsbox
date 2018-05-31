@@ -48,9 +48,11 @@
   - 从任意 App 通过分享到 「打开阅读器」进入阅读模式；
 - 导出到 Pocket / Evernote / 印象笔记 / Dropbox ；
 - 导出 MD 到 Bear / Drafts 4 ( 需要系统已经安装对应的 App )
+- 导出 MD 到 剪切板；
 - 同步适配列表；
 - 读取 Dropbox 的配置文件；（需要使用 Dropbox token ）
 - 版本升级系统；
+-「自动感知当前环境，自动进入阅读模式」；（需要设定「触发器脚本」，详细 [请看这里](https://github.com/Kenshin/simpread/wiki/JSBox#%E8%A7%A6%E5%8F%91%E5%99%A8%E8%84%9A%E6%9C%AC)
 
 ## 简悦 · 阅读器是什么
 
