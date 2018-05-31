@@ -1,6 +1,6 @@
 ## 官网
 
-- <http://ksria.com/simpread>
+- <http://ksria.com/simpread#jsbox>
 
 ## 配置指南
 

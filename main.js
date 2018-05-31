@@ -72,7 +72,7 @@ function menubar() {
 function welcome() {
     $ui.alert({
         title: "嗨，很高兴见到你",
-        message: "\n感谢使用简悦！\n希望简悦一如既往的提供「让你瞬间进入沉浸式阅读的」体验。\n\n如果是第一次安装请先点击配置指南。",
+        message: "\n感谢使用简悦！\n\n希望简悦一如既往的提供「让你瞬间进入沉浸式阅读的」体验。\n\n如果是第一次安装请先点击配置指南。",
         actions: [
             {
                 title: "配置指南",
@@ -525,7 +525,7 @@ function about() {
                                     }
                                 },
                                 {
-                                    title: "放弃",
+                                    title: "再想想",
                                 }
                             ]
                         });

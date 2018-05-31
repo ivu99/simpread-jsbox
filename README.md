@@ -14,8 +14,8 @@
 
 ## 下载地址
 
-- **简悦** [下载地址](https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-1.0.0.box?201805251238&name=%E7%AE%80%E6%82%A6) 
-- **简悦 · 阅读器** [下载地址](https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-reader.box?201805251238&name=%E7%AE%80%E6%82%A6%20%C2%B7%20%E9%98%85%E8%AF%BB%E5%99%A8)
+- **简悦** [下载地址](https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-1.0.1.box?20180531200&name=%E7%AE%80%E6%82%A6) 
+- **简悦 · 阅读器** [下载地址](https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-reader-1.0.1.box?20180531200&name=%E7%AE%80%E6%82%A6%20%C2%B7%20%E9%98%85%E8%AF%BB%E5%99%A8)
 
 ## 简悦 iOS with JSBox 是什么
 
