@@ -3330,9 +3330,11 @@ var puplugin = (function (exports) {
 	            if ($img[0].clientWidth > 1000) {
 	                $img.css("zoom", "0.6");
 	            } else if ($img[0].clientHeight > 620) {
-	                $img.attr("height", 620);
-	                if ($img[0].clientWidth < $("sr-rd-content").width()) $img.css({ "width": "auto" });
-	            }
+                if ( !/iphone/i.test(navigator.userAgent) ) {
+                  $img.attr("height", 620);
+                  if ($img[0].clientWidth < $("sr-rd-content").width()) $img.css({ "width": "auto" });
+                }
+            }
 	            if ($img[0].clientWidth > $("sr-rd-content").width()) $img.addClass("sr-rd-content-img");
 	        },
 	            loaderrorHandle = function loaderrorHandle() {
@@ -3351,12 +3353,12 @@ var puplugin = (function (exports) {
 	        newsrc = zuimei ? zuimei : newsrc;
 	        newsrc = jianshu ? jianshu : newsrc;
 	        !newsrc.startsWith("http") && (newsrc = newsrc.startsWith("//") ? location.protocol + newsrc : location.origin + newsrc);
-	        $img.attr("src", newsrc).one("load", function () {
+	        $img.attr("src", newsrc).on("load", function () {
 	            return fixOverflowImgsize();
-	        }).one("error", function () {
+	        }).on("error", function () {
 	            return loaderrorHandle();
 	        }).replaceAll($target).wrap("<div class='sr-rd-content-center'></div>");
-	    });
+      });
 	    $target.find("sr-blockquote").map(function (index, item) {
 	        var $target = $(item),
 	            $parent = $target.parent();

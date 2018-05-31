@@ -39,14 +39,13 @@ function platform() {
  * @param {object} puplugin.Plugin( "style" )
  */
 function setStyle(style) {
+    $("head").append("<style type=\"text/css\">" + theme_pixyii + "</style>");
     if (userAgent() == "iphone") {
         style.FontSize("72%");
-        //$("sr-read").css({ "padding": "0 50px" });
-        $("head").append("<style type=\"text/css\">" + theme_gothic + "</style>");
+        $("head").append("<style type=\"text/css\">" + mobile_style + "</style>");
     } else {
         style.FontSize("75%");
         style.Layout("10%");
-        $("head").append("<style type=\"text/css\">" + theme_pixyii + "</style>");
     }
 
     var maxWidth = $(document).width(),
@@ -72,7 +71,7 @@ function controlbar() {
             cur = next;
         });
         $(".simpread-read-root sr-rd-crlbar fab.anchor").on("click", function (event) {
-            $("sr-crlbar-group").css({ opacity: 1, display: "block" });
+            $("sr-crlbar-group").css({ opacity: 1, display: "flex" });
         });
 }
 
@@ -81,7 +80,7 @@ function controlbar() {
  */
 function readMode(pr, puplugin, $) {
     var $root = $("html"),
-    bgtmpl = "<div class=\"simpread-read-root\">\n                        <sr-read>\n                            <sr-rd-title></sr-rd-title>\n                            <sr-rd-desc></sr-rd-desc>\n                            <sr-rd-content></sr-rd-content>\n                            <sr-page></sr-page>\n                            <sr-rd-footer>\n                                <sr-rd-footer-text style=\"display:none;\">\u5168\u6587\u5B8C</sr-rd-footer-text>\n                                <sr-rd-footer-copywrite>\n                                    <span>\u672C\u6587\u7531 \u7B80\u60A6 </span><a href=\"http://ksria.com/simpread\" target=\"_blank\">SimpRead</a><span> \u4F18\u5316\uFF0C\u7528\u4EE5\u63D0\u5347\u9605\u8BFB\u4F53\u9A8C\u3002</span>\n                                </sr-rd-footer-copywrite>\n                                </sr-rd-footer>\n                            <sr-rd-crlbar>\n                                <sr-crlbar-group>\n                                    <fab class=\"drafts\"></fab>\n                                    <fab class=\"bear\"></fab>\n                                    <fab class=\"dropbox\"></fab>\n                                    <fab class=\"yinxiang\"></fab>\n                                    <fab class=\"evernote\"></fab>\n                                    <fab class=\"pocket\"></fab>\n                                </sr-crlbar-group>\n                                <fab class=\"anchor\" style=\"opacity:1;\"></fab>\n                                <fab class=\"crlbar-close\"></fab>\n                            </sr-rd-crlbar>\n                        </sr-read>\n                    </div>",
+    bgtmpl = "<div class=\"simpread-read-root\">\n                        <sr-read>\n                            <sr-rd-title></sr-rd-title>\n                            <sr-rd-desc></sr-rd-desc>\n                            <sr-rd-content></sr-rd-content>\n                            <sr-page></sr-page>\n                            <sr-rd-footer>\n                                <sr-rd-footer-text style=\"display:none;\">\u5168\u6587\u5B8C</sr-rd-footer-text>\n                                <sr-rd-footer-copywrite>\n                                    <span>\u672C\u6587\u7531 \u7B80\u60A6 </span><a href=\"http://ksria.com/simpread\" target=\"_blank\">SimpRead</a><span> \u4F18\u5316\uFF0C\u7528\u4EE5\u63D0\u5347\u9605\u8BFB\u4F53\u9A8C\u3002</span>\n                                </sr-rd-footer-copywrite>\n                                </sr-rd-footer>\n                            <sr-rd-crlbar>\n                                <sr-crlbar-group>\n                                    <fab class=\"drafts\"></fab>\n                                    <fab class=\"bear\"></fab>\n                                    <fab class=\"markdown\"></fab>\n                                    <fab class=\"dropbox\"></fab>\n                                    <fab class=\"yinxiang\"></fab>\n                                    <fab class=\"evernote\"></fab>\n                                    <fab class=\"pocket\"></fab>\n                                </sr-crlbar-group>\n                                <fab class=\"anchor\" style=\"opacity:1;\"></fab>\n                                <fab class=\"crlbar-close\"></fab>\n                            </sr-rd-crlbar>\n                        </sr-read>\n                    </div>",
         multiple = function multiple(include, avatar) {
         var contents = [],
             names = avatar[0].name,
@@ -136,6 +135,7 @@ function readMode(pr, puplugin, $) {
         controlbar();
         service();
         close( $root );
+        $( "iframe" ).remove(); // hacd code
     }, 500);
 
 }
@@ -166,16 +166,20 @@ function service() {
             token = simpread_config.secret && simpread_config.secret[type] ? simpread_config.secret[type].access_token : "",
             notify = new Notify().Render({ state: "loading", content: "保存中，请稍后！" }),
             success = function success(result, textStatus, jqXHR) {
-            console.log(result, textStatus, jqXHR);
-            notify.complete();
-            if (result.code == 200) {
-                new Notify().Render("保存成功！");
-            } else new Notify().Render("保存失败，请稍候再试！");
-        },
+                console.log(result, textStatus, jqXHR);
+                notify.complete();
+                if (result.code == 200) {
+                    new Notify().Render("保存成功！");
+                } else new Notify().Render("保存失败，请稍候再试！");
+            },
             failed = function failed(jqXHR, textStatus, error) {
-            console.error(jqXHR, textStatus, error);
-            notify.complete();
-            new Notify().Render("保存失败，请稍候再试！");
+                console.error(jqXHR, textStatus, error);
+                notify.complete();
+                new Notify().Render("保存失败，请稍候再试！");
+            },
+            markdown = function markdown() {
+                var mdService = new TurndownService();
+                return mdService.turndown(clearMD($("sr-rd-content").html()));
         };
         if (type == "pocket") {
             $.ajax({
@@ -201,8 +205,7 @@ function service() {
                 }
             }).done(success).fail(failed);
         } else if ( type == "dropbox" ) {
-            const mdService = new TurndownService(),
-                  data      = mdService.turndown( clearMD( $("sr-rd-content").html() )),
+            const data      = markdown(),
                   path      = "md/",
                   name      = pr.html.title + ".md",
                   safename  = data => data.replace( /\//ig, "" ),
@@ -227,8 +230,7 @@ function service() {
                 contentType : false
             }).done( ( data, textStatus, jqXHR ) => success( {code:200, data}, textStatus, jqXHR )).fail( failed );
         } else if ( type == "bear" || type == "drafts" ) {
-            var _mdService = new TurndownService(),
-                _data = _mdService.turndown(clearMD($("sr-rd-content").html())),
+            var _data = markdown(),
                 title = encodeURIComponent(pr.html.title),
                 text = encodeURIComponent(_data),
                 bear = "bear://x-callback-url/create?title=" + title + "&text=" + text + "&tags=simpread",
@@ -240,12 +242,22 @@ function service() {
                 window.location.href = type == "bear" ? bear : drafts;
                 $notify && $notify( "open", {"url": type == "bear" ? bear : drafts });
             }, 2000);
+        } else if (type == "markdown") {
+            notify.complete();
+            var _data2 = markdown();
+            try {
+                $notify && $notify( "clipboard", { string: _data2 });
+                new Notify().Render("已成功复制到剪切板！");
+            } catch ( error ) {
+                new Notify().Render( "此功能只能在「阅读器」中使用。" );
+            }
         }
     };
     simpread_config.secret && simpread_config.secret.pocket   && $("sr-rd-crlbar fab.pocket").click(clickEvent)   && $("sr-rd-crlbar fab.pocket").css({ opacity: 1, "background-color": "rgb(3, 169, 244)" });
     simpread_config.secret && simpread_config.secret.evernote && $("sr-rd-crlbar fab.evernote").click(clickEvent) && $("sr-rd-crlbar fab.evernote").css({ opacity: 1, "background-color": "rgb(3, 169, 244)" });
     simpread_config.secret && simpread_config.secret.yinxiang && $("sr-rd-crlbar fab.yinxiang").click(clickEvent) && $("sr-rd-crlbar fab.yinxiang").css({ opacity: 1, "background-color": "rgb(3, 169, 244)" });
     simpread_config.secret && simpread_config.secret.yinxiang && $("sr-rd-crlbar fab.dropbox").click(clickEvent)  && $("sr-rd-crlbar fab.dropbox").css({ opacity: 1, "background-color": "rgb(3, 169, 244)" });
+    platform() != "pc"     && $("sr-rd-crlbar fab.markdown").click(clickEvent) && $("sr-rd-crlbar fab.markdown").css({ opacity: 1 });
     platform() != "pc"     && $("sr-rd-crlbar fab.bear").click(clickEvent)   && $("sr-rd-crlbar fab.bear").css({ opacity: 1 });
     platform() != "pc"     && $("sr-rd-crlbar fab.drafts").click(clickEvent) && $("sr-rd-crlbar fab.drafts").css({ opacity: 1 });
 }
