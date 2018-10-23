@@ -354,7 +354,7 @@ function setting() {
                 events: {
                     tapped: function( sender ) {
                         $http.get({
-                            url: "http://ojec5ddd5.bkt.clouddn.com/website_list_v4.json?" + Math.round(+new Date()),
+                            url: "http://sr.ksria.cn/website_list_v4.json?" + Math.round(+new Date()),
                             handler: function( resp ) {
                                 if ( resp.error != null ) {
                                     $ui.error( "导入发生了错误，请稍后再试！" );
@@ -443,11 +443,11 @@ function about() {
                         $ui.loading( true );
                         if ( $("update").title == "点击更新 >>" ) {
                             $ui.loading( false );
-                            $app.openURL("https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-" + version + ".box?" + Math.round(+new Date()) + "&name=%E7%AE%80%E6%82%A6");
+                            $app.openURL("https://xteko.com/redir?url=http://sr.ksria.cn/jsbox/simpread-" + version + ".box?" + Math.round(+new Date()) + "&name=%E7%AE%80%E6%82%A6");
                             return;
                         }
                         $http.get({
-                            url: "http://ojec5ddd5.bkt.clouddn.com/versions.json?" + Math.round(+new Date()),
+                            url: "http://sr.ksria.cn/versions.json?" + Math.round(+new Date()),
                             handler: function( resp ) {
                                 $ui.loading( false );
                                 if ( resp.error != null ) {
@@ -521,7 +521,7 @@ function about() {
                                 {
                                     title: "请杯咖啡 ☕",
                                     handler: function() {
-                                        $app.openURL("http://ojec5ddd5.bkt.clouddn.com/zhifu_m2.png");
+                                        $app.openURL("http://sr.ksria.cn/zhifu_m2.png");
                                     }
                                 },
                                 {
@@ -695,7 +695,7 @@ function existReader() {
                 {
                     title: "马上安装",
                     handler: function() {
-                        $app.openURL("https://xteko.com/redir?url=http://ojec5ddd5.bkt.clouddn.com/jsbox/simpread-reader-" + version + ".box?" + Math.round(+new Date()) + "&name=%E7%AE%80%E6%82%A6%20%C2%B7%20%E9%98%85%E8%AF%BB%E5%99%A8");
+                        $app.openURL("https://xteko.com/redir?url=http://sr.ksria.cn/jsbox/simpread-reader-" + version + ".box?" + Math.round(+new Date()) + "&name=%E7%AE%80%E6%82%A6%20%C2%B7%20%E9%98%85%E8%AF%BB%E5%99%A8");
                     }
                 },
                 {
