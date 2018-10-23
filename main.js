@@ -98,7 +98,8 @@ function welcome() {
 function update() {
     var file     = $file.read( "version.json" ),
         versions = {
-            "1.0.1": "增加了「识别当前环境，自动进入阅读模式」、复制 Markdown 到剪切板（只限阅读器）等功能"
+            "1.0.1": "增加了「识别当前环境，自动进入阅读模式」、复制 Markdown 到剪切板（只限阅读器）等功能",
+            "1.0.2": "去掉七牛云存储的测试域名"
         };
     if ( version != JSON.parse( file.string ).version ) {
         var success = $file.write({
